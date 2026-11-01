@@ -1,0 +1,24 @@
+{
+  "name": "academic-term-explainer-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "学术术语解释器 · 产品介绍网页（Apple 风格）",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "gsap": "^3.13.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "playwright": "^1.64.1",
+    "typescript": "~5.7.3",
+    "vite": "^6.0.11",
+    "vue-tsc": "^2.2.0"
+  }
+}
