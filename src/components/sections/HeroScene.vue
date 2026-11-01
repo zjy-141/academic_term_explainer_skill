@@ -356,18 +356,19 @@ onBeforeUnmount(() => ctx?.revert())
 
 @media (max-width: 1068px) {
   .scene {
-    aspect-ratio: 16 / 11;
+    aspect-ratio: auto;
+  }
+  .scene__frame {
+    position: relative;
+    inset: auto;
   }
   .scene__body {
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 20px;
     padding: 20px;
   }
-  .scene__paragraph {
-    display: none;
-  }
   .scene__text {
-    font-size: 13px;
+    font-size: 15px;
   }
   .scene__terms {
     grid-template-columns: 1fr 1fr;
@@ -384,19 +385,17 @@ onBeforeUnmount(() => ctx?.revert())
   .hero-scene {
     padding: 0;
   }
-  .scene {
-    aspect-ratio: auto;
-  }
-  .scene__frame {
-    position: relative;
-    inset: auto;
-    margin-top: 24px;
-  }
   .scene__glow {
     filter: blur(48px);
   }
+  .scene__frame {
+    border-radius: 20px;
+  }
   .scene__text {
-    display: none;
+    font-size: 14px;
+  }
+  .scene__terms {
+    grid-template-columns: 1fr;
   }
   .scene__meta {
     flex-wrap: wrap;

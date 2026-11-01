@@ -50,9 +50,8 @@ export function initSiteMotion() {
       })
     })
 
-    // 4. 条形图增长
+    // 4. 条形图增长（宽度由模板写入 --bar-width）
     gsap.utils.toArray<HTMLElement>('[data-bar]').forEach((el) => {
-      const width = el.dataset.bar || '0%'
       gsap.fromTo(
         el,
         { scaleX: 0.02 },
@@ -64,7 +63,6 @@ export function initSiteMotion() {
           scrollTrigger: { trigger: el, start: 'top bottom-=10%', once: true },
         },
       )
-      el.style.setProperty('--bar-width', width)
     })
 
     // 5. 数字滚动

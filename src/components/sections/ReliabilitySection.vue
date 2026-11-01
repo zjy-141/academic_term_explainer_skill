@@ -31,6 +31,9 @@ import StorySection from '../ui/StorySection.vue'
         <div>
           <p class="bypass__name">{{ reliability.bypass.name }}</p>
           <p class="bypass__note">{{ reliability.bypass.note }}</p>
+          <div class="bypass__triggers">
+            <span v-for="t in reliability.bypass.triggers" :key="t" class="bypass__trigger">{{ t }}</span>
+          </div>
         </div>
       </div>
 
@@ -134,6 +137,22 @@ import StorySection from '../ui/StorySection.vue'
   border-radius: var(--radius-card);
   border: 1px dashed rgba(255, 255, 255, 0.22);
   background: rgba(255, 255, 255, 0.02);
+}
+
+.bypass__triggers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.bypass__trigger {
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  color: var(--glyph-secondary);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .bypass__level {

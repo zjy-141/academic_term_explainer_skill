@@ -35,9 +35,9 @@ import TypeLockup from '../ui/TypeLockup.vue'
 
 .tcard {
   position: relative;
-  min-height: 284px;
+  min-height: 232px;
   border-radius: var(--radius-card);
-  padding: 28px;
+  padding: 26px;
   background: var(--bg-light-alt);
   display: flex;
   flex-direction: column;
@@ -93,6 +93,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
   line-height: 1.5;
   letter-spacing: -0.016em;
   color: var(--glyph-light-secondary);
+  min-height: 3em;
 }
 
 @media (max-width: 1068px) {

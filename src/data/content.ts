@@ -335,7 +335,12 @@ export const reliability = {
       note: '不阻塞主交付',
     },
   ],
-  bypass: { level: 'L4', name: 'Marp 幻灯片旁路', note: '仅在你明确要演示稿时启用，不参与主链探测' },
+  bypass: {
+    level: 'L4',
+    name: 'Marp 幻灯片旁路',
+    note: '仅在你明确要演示稿时启用，不参与主链探测，也不从 L3 降级而来。',
+    triggers: ['幻灯片式 PDF', '演示稿', 'PPT 风格'],
+  },
   probe: [
     { k: '探测方式', v: '真实试跑，不猜环境' },
     { k: '总超时', v: '30 秒，超时按 L5 处理' },

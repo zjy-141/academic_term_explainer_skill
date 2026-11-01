@@ -95,7 +95,7 @@ const steps = [
           </div>
 
           <!-- 输出 -->
-          <div class="stage__pane" :class="{ 'is-active': active === 2 }">
+          <div class="stage__pane is-center" :class="{ 'is-active': active === 2 }">
             <div class="pane-head">
               <span class="pane-head__label mono">输出</span>
               <span class="pane-head__meta">academic_terms_ai-medical-ethics_20261015-1430.md</span>
@@ -202,6 +202,10 @@ const steps = [
   opacity: 1;
   transform: none;
   pointer-events: auto;
+}
+
+.stage__pane.is-center {
+  justify-content: center;
 }
 
 .pane-head {

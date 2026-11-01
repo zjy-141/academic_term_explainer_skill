@@ -49,6 +49,10 @@ import StorySection from '../ui/StorySection.vue'
         </div>
       </div>
     </div>
+
+    <p class="search__note" data-reveal>
+      多术语按顺序处理，每个术语的检索结果独立成节，不混用来源；L1 多来源定义一致时可省去 L3，改用 L4 补前沿进展。
+    </p>
   </StorySection>
 </template>
 
@@ -206,6 +210,16 @@ import StorySection from '../ui/StorySection.vue'
   margin-top: 6px;
   font-size: 12px;
   color: var(--glyph-tertiary);
+}
+
+.search__note {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--glyph-tertiary);
+  max-width: 88ch;
 }
 
 @media (max-width: 1068px) {

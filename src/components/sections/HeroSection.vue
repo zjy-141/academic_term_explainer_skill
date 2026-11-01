@@ -152,8 +152,5 @@ import HeroScene from './HeroScene.vue'
     flex-direction: column;
     gap: 16px;
   }
-  .hero__actions .pill-button {
-    width: 100%;
-  }
 }
 </style>

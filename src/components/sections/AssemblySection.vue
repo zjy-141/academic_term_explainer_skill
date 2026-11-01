@@ -67,7 +67,7 @@ import StorySection from '../ui/StorySection.vue'
             <span class="bench__value mono">{{ b.display }}</span>
           </div>
           <div class="bench__track">
-            <span class="bench__fill" :data-bar="b.ratio + '%'"></span>
+            <span class="bench__fill" :style="{ '--bar-width': b.ratio + '%' }" :data-bar="b.ratio + '%'"></span>
           </div>
         </li>
       </ul>
