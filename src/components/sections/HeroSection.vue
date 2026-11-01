@@ -36,7 +36,7 @@ import HeroScene from './HeroScene.vue'
     </div>
 
     <p class="hero__sosumi viewport-content">
-      面向跨学科研究生的术语解读工具 · 由{{ site.team }}出品 · 设计参考 Apple 产品页版式
+      面向跨学科研究生的术语解读工具 · {{ site.team }} · {{ site.version }}
     </p>
   </section>
 </template>

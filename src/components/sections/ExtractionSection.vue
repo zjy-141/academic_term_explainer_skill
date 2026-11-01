@@ -29,7 +29,7 @@ import StorySection from '../ui/StorySection.vue'
       <article class="ext__card glass-card" data-stagger-item>
         <header class="ext__card-head">
           <p class="ext__card-label mono">{{ extraction.rulesTitle }}</p>
-          <p class="ext__card-note">宁缺毋滥，不强行凑数</p>
+          <p class="ext__card-note">候选不足时降阈值，仍不足就全部提取</p>
         </header>
         <dl class="rules">
           <div v-for="rule in extraction.rules" :key="rule.k" class="rules__row">

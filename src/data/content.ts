@@ -31,11 +31,11 @@ export const nav = {
 }
 
 export const hero = {
-  eyebrow: ['为跨学科阅读而生的', '学术术语解释器'],
-  headline: '一读即通',
-  releaseLabel: '现已可用',
+  eyebrow: ['面向跨学科阅读', '学术术语解释器'],
+  headline: '看懂为止',
+  releaseLabel: '已发布',
   releaseValue: 'v1.4.2',
-  price: '免费 · 开源 · 无需注册',
+  price: '无需注册 · 支持 Markdown 与 PDF 导出',
   note: '*',
   primaryCta: { label: '立即体验', href: '#design' },
   secondaryCta: { label: '查看技术规格', href: '#metrics' },
@@ -56,86 +56,92 @@ export const hero = {
 
 export const highlights = {
   eyebrow: '先刷重点',
-  film: '观看演示',
+  film: '看工作流',
   items: [
     {
       index: '01',
       title: '术语提取',
-      line: '从一段话里，拎出真正难懂的词。',
-      detail: '五维评分，阈值驱动，Top 10 封顶。',
+      line: '从文本里挑出真正难懂的词。',
+      detail: '频率、词根、强调标记、专业性、切题度五项打分，默认取前 10 个。',
+      glyph: 'extract',
     },
     {
       index: '02',
       title: '学科路由',
-      line: '17 个学科、9 组歧义，指哪打哪。',
-      detail: '信号词扫描 + 歧义消解，直连权威源。',
+      line: '按共现词判断它属于哪个学科。',
+      detail: '17 个学科、9 组歧义词，送到对应的权威数据源。',
+      glyph: 'route',
     },
     {
       index: '03',
-      title: '强制联网',
-      line: '每个术语至少两次检索。',
-      detail: '定义不靠记忆，来源交叉验证。',
+      title: '联网检索',
+      line: '每个术语至少查两次。',
+      detail: '中文定义打底，英文原词交叉验证，来源不一致就继续找。',
+      glyph: 'search',
     },
     {
       index: '04',
       title: '模块拼装',
-      line: '六块拼图，长文不长，短文不空。',
-      detail: 'A–F 模块按复杂度决策树组装。',
+      line: '按复杂度决定解释写多长。',
+      detail: 'A–F 六个模块按决策树组合，核心概念展开，边缘术语只写定义。',
+      glyph: 'assemble',
     },
     {
       index: '05',
-      title: '递归澄清',
-      line: '子概念再讲一层，最多两层。',
-      detail: '新术语独立成节，不打断主篇。',
+      title: '递归解释',
+      line: '解释里出现的新词，再补一层。',
+      detail: '回扫生成的正文，把仍然挡路的概念补上，深度止于 2 层。',
+      glyph: 'recurse',
     },
     {
       index: '06',
-      title: '四级降级',
-      line: 'L1 到 L5，任何环境都有产出。',
-      detail: 'PDF 失败不阻塞 Markdown 交付。',
+      title: '输出降级',
+      line: '导不出来时，换一种方式导。',
+      detail: 'L1 到 L5 四级降级，PDF 失败不影响 Markdown 交付。',
+      glyph: 'fallback',
     },
     {
       index: '07',
-      title: '引用可查',
-      line: '标题 + 链接，一条不编。',
-      detail: '搜不到就留空，绝不虚构来源。',
+      title: '引用核对',
+      line: '每条外部信息都能点回去。',
+      detail: '标题加链接，搜不到就留空，不补一个看起来合理的地址。',
+      glyph: 'cite',
     },
   ],
 }
 
 export const design = {
-  eyebrow: '设计',
-  headline: ['一句话进去，', '一张知识卡片出来。'],
+  eyebrow: '工作流',
+  headline: ['贴一段原文，', '拿到一份解释。'],
   intro:
-    '不需要选模板，不需要填表单。把读不懂的那段论文贴进来，说一句“帮我解释”，剩下的提取、检索、拼装、排版，都由它一路做完。',
+    '把读不懂的段落粘进来，说明要解释哪几个词。系统按提取、路由、检索、拼装的顺序执行，不需要选模板或填表单。',
   scenes: [
     {
       label: '输入',
-      title: '只贴原文就好',
-      copy: '纯文本、Markdown、论文片段，甚至只报几个术语的名字。系统自动识别格式、解析参数，判断要不要联网、要不要出 PDF。',
+      title: '只给原文也可以',
+      copy: '纯文本、Markdown 或论文片段都能处理，也可以只报术语名字、跳过提取。系统会识别格式、解析参数，判断是否联网、是否导出 PDF。',
       figure: 'input',
     },
     {
       label: '处理',
-      title: '一路都在查证',
-      copy: '每个术语独立走完提取、路由、检索、拼装四步，互不串源。搜索失败会降级标注，而不是编一个看起来很像的答案。',
+      title: '每个术语单独走一遍',
+      copy: '术语之间不共用检索结果。某个词搜不到时按策略切换，并在文中标注；不确定的内容不会被写成结论。',
       figure: 'process',
     },
     {
       label: '输出',
-      title: 'Markdown 与 PDF',
-      copy: '结构化 Markdown 落地即用，可选的 PDF 由四级降级链生成。文件名带主题与时间戳，不覆盖、不重名。',
+      title: 'Markdown 为主，PDF 可选',
+      copy: 'Markdown 写入输出目录，文件名带主题与时间戳，不会覆盖同名文件。PDF 按环境探测结果从 L1 到 L5 选择，公式在 L3 下会简化，正文仍保留完整 LaTeX。',
       figure: 'output',
     },
   ],
 }
 
 export const extraction = {
-  wordmark: '提取',
-  eyebrow: 'M1 · 术语提取引擎',
-  headline: ['重点，', '一眼拎清。'],
+  eyebrow: 'M1 · 术语提取',
+  headline: ['先挑出', '真正难懂的词。'],
   intro:
-    '一段一千字的论文摘要，真正的难点往往只有三五个词。提取引擎给每个候选词打分：出现频率、复合词根、作者是否加粗强调、是否领域专名、是否切题。总分跨过阈值才进入解释队列，剩下的交给“宁缺毋滥”。',
+    '一段一千字的论文摘要，难点通常只有三到五个词。引擎给每个候选词打分：出现频率、复合词根、作者是否加粗强调、是否领域专名、是否切题。总分达到阈值才进入解释队列；候选不足时降阈值，仍不足就全部提取。',
   weightTitle: '评分权重',
   weights: [
     { score: '+3', label: '出现频率 ≥ 3 次', note: '核心概念' },
@@ -148,10 +154,10 @@ export const extraction = {
   rules: [
     { k: '默认阈值', v: '≥ 3 分' },
     { k: '候选不足 5 个', v: '阈值降至 2 分' },
-    { k: '仍不足 5 个', v: '全部提取，不强行凑数' },
+    { k: '仍不足 5 个', v: '全部提取，不补足数量' },
     { k: '数量上限', v: '默认前 10 个' },
     { k: '同分排序', v: '按首次出现顺序' },
-    { k: '同义词', v: '合并为一条并在“相关概念”辨析' },
+    { k: '同义词', v: '合并为一条，在「相关概念」里辨析' },
   ],
   sampleTitle: '示例',
   sampleText:
@@ -164,9 +170,9 @@ export const extraction = {
 
 export const routing = {
   eyebrow: 'M2 · 学科路由',
-  headline: ['指哪，', '打哪。'],
+  headline: ['再送进', '对的那个学科。'],
   intro:
-    '同一个词，换个学科就是另一件事。“推理”在 AI 论文里是模型延迟，在心理学论文里是判断偏误。路由模块先扫信号词，再用 9 组共现规则消歧，最后把术语送进最该去的数据源。',
+    '同一个词在不同学科里指向不同概念。“推理”在 AI 论文中指模型延迟，在心理学论文中指判断偏误。路由模块先扫信号词，再按 9 组共现规则消歧，最后匹配数据源。',
   ambiguities: [
     {
       word: '推理',
@@ -218,9 +224,9 @@ export const routing = {
 
 export const search = {
   eyebrow: 'M3 · 联网搜索',
-  headline: ['实时检索，', '顶上见。'],
+  headline: ['逐个去查', '最新的定义。'],
   intro:
-    '学术术语的语义一直在动。引擎不靠记忆答题，而是把每个术语至少送出去检索两次：中文定义打底，英文原词交叉验证，必要时再补一次领域限定，找最新进展。',
+    '学术术语的含义会随研究进展变化，所以引擎不依赖模型记忆答题。每个术语至少检索两次：中文定义打底，英文原词交叉验证，需要前沿进展时再补一次领域限定搜索。',
   levels: [
     { level: 'L1', name: '中文精确搜索', query: '「算法透明度」学术定义 研究', note: '默认首选' },
     { level: 'L2', name: '中文宽泛搜索', query: '「算法透明度」概念 含义', note: 'L1 结果不足时' },
@@ -238,23 +244,23 @@ export const search = {
 
 export const assembly = {
   eyebrow: 'M4 · 模块拼装',
-  headline: ['六块拼图，', '按需出场。'],
+  headline: ['按复杂度', '决定写多长。'],
   intro:
-    '解释不是越长越好。拼装引擎看术语复杂度决定出场阵容：核心概念全模块铺开，边缘术语只讲“是什么”，底线是 A + B 一定要有。',
+    '解释不是越长越好。拼装引擎按术语复杂度选模块：核心概念铺开六块，边缘术语只写定义和原文含义。所有术语至少包含 A 与 B。',
   modules: [
-    { key: 'A', name: '术语原词与译名', required: '必选', copy: '英文原词 + 中文译名，供对照引用。' },
-    { key: 'B', name: '通俗定义', required: '必选', copy: '生活化类比，不引入未解释的新术语。' },
+    { key: 'A', name: '术语原词与译名', required: '必选', copy: '英文原词加中文译名，供对照引用。' },
+    { key: 'B', name: '通俗定义', required: '必选', copy: '用日常语言解释，不引入未解释的新术语。' },
     { key: 'C', name: '学术语境', required: '条件必选', copy: '学科定位与研究意义，可含公式。' },
     { key: 'D', name: '原文含义', required: '条件必选', copy: '结合你原文中的具体指代。' },
-    { key: 'E', name: '相关概念', required: '可选', copy: '1–2 个易混概念辨析。' },
+    { key: 'E', name: '相关概念', required: '可选', copy: '1–2 个易混概念的辨析。' },
     { key: 'F', name: '延伸阅读', required: '可选', copy: '1–2 条参考资料，搜不到就留空。' },
   ],
   engines: [
     {
       name: 'M1 + M2 + M3',
-      label: '基本盘',
+      label: '基础链路',
       headline: '提取、路由、检索',
-      copy: '五维评分筛出真难点，信号词把它们送对地方，联网检索带回可核对的定义与研究进展。三者串成解释的地基。',
+      copy: '五维评分筛出候选词，信号词把它们送到对应学科，联网检索带回可核对的定义与研究进展。这三步决定了后面内容的上限。',
       metrics: [
         { label: '术语提取准确率', value: '≥ 90%' },
         { label: '搜索成功率', value: '≥ 98%' },
@@ -262,9 +268,9 @@ export const assembly = {
     },
     {
       name: 'M4 + M5 + M9',
-      label: '进阶盘',
+      label: '扩展链路',
       headline: '拼装、递归、合并',
-      copy: '复杂术语铺开六模块，子概念就地递归澄清，近义术语合并一条再辨析差异。读起来是一条线，不是一堆碎片。',
+      copy: '复杂术语铺开六模块，子概念就地递归澄清，近义术语合并成一条再辨析差异。输出的结构由这三步决定。',
       metrics: [
         { label: '模块完整性', value: '100%' },
         { label: '知识网络完整度', value: '≥ 70%' },
@@ -285,9 +291,9 @@ export const assembly = {
 
 export const recursion = {
   eyebrow: 'M5 · 递归澄清',
-  headline: ['新词，', '就地讲清。'],
+  headline: ['遇到新词，', '就地补一层。'],
   intro:
-    '解释里又冒出没见过的词，是最扫兴的事。引擎会回扫自己写下的每一句，把仍然挡路的概念挑出来再讲一遍，深度到两层就收手——既不半途而废，也不无限套娃。',
+    '解释正文里又出现没见过的词，读者还是会被绊住。引擎回扫生成的每一句，把仍然挡路的概念挑出来单独解释，深度到两层停止。',
   tree: {
     root: { name: '脉冲时序依赖可塑性', en: 'STDP' },
     children: [
@@ -299,16 +305,16 @@ export const recursion = {
     { k: '递归深度', v: '≤ 2 层' },
     { k: '次级词长度', v: '100–150 字' },
     { k: '输出位置', v: '独立成节「递归补充解释」' },
-    { k: '递归层', v: '不再触发新递归' },
+    { k: '递归层', v: '不再触发新的递归' },
     { k: '联网要求', v: '可基于通用学术知识简述' },
   ],
 }
 
 export const reliability = {
   eyebrow: 'M6 – M8 · 输出',
-  headline: ['从 L1 到 L5，', '一直有输出。'],
+  headline: ['导出失败，', '也还有文件。'],
   intro:
-    '办公电脑、评审的笔记本、一台干净的服务器，环境各不相同。输出前会真实试跑一遍导出链路，按 L1 → L2 → L3 → L5 命中第一个可用的方案；全部不可用时，Markdown 依然准时交付。',
+    '不同机器装的东西不一样。导出前会真实试跑一次，按 L1、L2、L3、L5 的顺序命中第一个可用的方案；四者都不可用时，Markdown 仍然交付。',
   chain: [
     {
       level: 'L1',
@@ -338,7 +344,7 @@ export const reliability = {
   bypass: {
     level: 'L4',
     name: 'Marp 幻灯片旁路',
-    note: '仅在你明确要演示稿时启用，不参与主链探测，也不从 L3 降级而来。',
+    note: '只有你明确要演示稿时才启用，不参与主链探测，也不从 L3 降级而来。',
     triggers: ['幻灯片式 PDF', '演示稿', 'PPT 风格'],
   },
   probe: [
@@ -352,15 +358,15 @@ export const reliability = {
 
 export const workflows = {
   eyebrow: '专业场景',
-  headline: ['跨的专业越多，', '越好用。'],
-  intro: '17 个学科的数据源已经接好。选中一个领域，看看它会把术语送到哪里去求证。',
+  headline: ['先看学科，', '再看数据源。'],
+  intro: '17 个学科各自的主源和备用源都已接好。选一个领域，看它会把术语送到哪里求证。',
   tabs: [
     {
       key: 'med',
       label: '医学',
       app: '人卫临床知识库',
-      title: '诊断之外，还得讲清依据。',
-      copy: '临床、病理、影像、药理类术语，优先检索人卫临床知识库与 Emtree 词库；AI 医疗类术语会同时命中计算机与伦理学。',
+      title: '临床术语先查权威临床库',
+      copy: '临床、病理、影像、药理类术语优先检索人卫临床知识库与 Emtree 词库。医疗 AI 类术语会同时命中计算机与伦理学两个源。',
       terms: ['算法透明度', '认知过载', '知情同意'],
       sources: ['人卫临床知识库', 'Emtree 词库', 'IEEE'],
     },
@@ -368,8 +374,8 @@ export const workflows = {
       key: 'law',
       label: '法学',
       app: '北大法宝',
-      title: '一个词，三段责任。',
-      copy: '权利、义务、判例类术语走北大法宝与康奈尔法律信息中心；“算法问责”这类跨学科词会同时标注技术、伦理与法律责任边界。',
+      title: '跨学科词要看责任边界',
+      copy: '权利、义务、判例类术语走北大法宝与康奈尔法律信息中心。“算法问责”这类词会同时标注技术、伦理与法律责任三个层面。',
       terms: ['算法问责制', '产品责任', '知情同意'],
       sources: ['北大法宝', '康奈尔法律', 'SEP'],
     },
@@ -377,8 +383,8 @@ export const workflows = {
       key: 'econ',
       label: '金融',
       app: 'MBA 智库百科',
-      title: '指标背后的那套话术。',
-      copy: '供给、需求、风险、博弈类术语优先 MBA 智库与新帕尔格雷夫；“评估”这类歧义词会按“风险 / 资产 / 投资”共现改道金融学。',
+      title: '指标口径要看来源',
+      copy: '供给、需求、风险、博弈类术语优先 MBA 智库与新帕尔格雷夫。“评估”这类歧义词会按“风险 / 资产 / 投资”的共现词改道金融学。',
       terms: ['外部性', '契约', '风险溢价'],
       sources: ['MBA 智库百科', '新帕尔格雷夫', 'Oxford Reference'],
     },
@@ -386,8 +392,8 @@ export const workflows = {
       key: 'edu',
       label: '教育学',
       app: 'Oxford Reference',
-      title: '形成性，还是终结性？',
-      copy: '教学论、评价、课程类术语直连 Oxford Reference 教育学与术语在线；“评估”“发展”等歧义词按共现词判定教育场景。',
+      title: '评价类术语的歧义最多',
+      copy: '教学论、评价、课程类术语直连 Oxford Reference 教育学与术语在线。“评估”“发展”等词按共现词判定教育场景。',
       terms: ['形成性评价', '最近发展区', '素养'],
       sources: ['Oxford Reference', '术语在线', 'ELSST'],
     },
@@ -395,7 +401,7 @@ export const workflows = {
       key: 'cs',
       label: '计算机',
       app: 'IEEE Xplore',
-      title: '模型、架构、推理，都是老熟人。',
+      title: '算法术语直连 IEEE',
       copy: '算法、模型、训练、推理类术语直连 IEEE，配合英文原词交叉验证；新兴交叉术语会并行多个学科源。',
       terms: ['自注意力机制', '零样本学习', '对数量化'],
       sources: ['IEEE Xplore', '术语在线', 'Oxford Reference'],
@@ -404,8 +410,8 @@ export const workflows = {
       key: 'phil',
       label: '哲学',
       app: '斯坦福哲学百科全书',
-      title: '概念的历史，比定义更重要。',
-      copy: '存在、正义、意识、因果类术语优先 SEP 与 Oxford Reference 哲学；伦理学议题会连带检索法学源以厘清责任归属。',
+      title: '概念史比定义更重要',
+      copy: '存在、正义、意识、因果类术语优先 SEP 与 Oxford Reference 哲学。伦理议题会连带检索法学源，厘清责任归属。',
       terms: ['具身认知', '因果涌现', '规范性'],
       sources: ['SEP', 'Oxford Reference', '北大法宝'],
     },
@@ -413,8 +419,8 @@ export const workflows = {
       key: 'media',
       label: '新闻传播',
       app: 'Oxford Reference',
-      title: '议程、框架、算法推荐。',
-      copy: '传播、受众、平台、舆论类术语走 Oxford Reference 传播学与术语在线，算法推荐类术语改道计算机源。',
+      title: '传播学术语与算法推荐',
+      copy: '传播、受众、平台、舆论类术语走 Oxford Reference 传播学与术语在线；算法推荐类术语改道计算机源。',
       terms: ['议程设置', '框架理论', '算法推荐'],
       sources: ['Oxford Reference', '术语在线', 'IEEE'],
     },
@@ -422,7 +428,7 @@ export const workflows = {
       key: 'env',
       label: '环境科学',
       app: '术语在线',
-      title: '气候、排放、碳汇。',
+      title: '环境政策常有两个归属',
       copy: '气候、污染、可持续类术语优先术语在线与 Oxford Reference 环境；政策类术语会同时命中政治学与经济学源。',
       terms: ['碳中和', '生物多样性', '外部性'],
       sources: ['术语在线', 'Oxford Reference', 'ELSST'],
@@ -431,8 +437,8 @@ export const workflows = {
       key: 'general',
       label: '通用',
       app: '术语在线',
-      title: '没命中，也不会掉地上。',
-      copy: '信号词全不命中时走通用兜底：术语在线 + Oxford Reference，并在文中标明这是兜底来源。',
+      title: '没命中信号词，走通用源',
+      copy: '信号词全不命中时走通用兜底：术语在线加 Oxford Reference，并在文中标明这是兜底来源。',
       terms: ['涌现', '自组织', '路径依赖'],
       sources: ['术语在线', 'Oxford Reference'],
     },
@@ -441,8 +447,8 @@ export const workflows = {
 
 export const metrics = {
   eyebrow: '指标',
-  headline: ['数字，', '说话。'],
-  intro: '下列为目标值，全部对应产品技术文档中的指标编号，可在技术规格一节逐条核对。',
+  headline: ['目标值，', '都能核对。'],
+  intro: '下列数值为目标值，每一项都对应产品技术文档中的指标编号，可在技术规格一节逐条核对。',
   stats: [
     { value: '≥ 90', unit: '%', label: '术语提取准确率', code: 'FI-01' },
     { value: '≥ 98', unit: '%', label: '搜索成功率', code: 'FI-03' },
@@ -457,11 +463,11 @@ export const metrics = {
 
 export const interfaces = {
   eyebrow: '接口',
-  headline: ['一接上，', '全学科联通。'],
-  intro: '17 个学科各有一条主隧道和一条备用隧道。主源取不到权威定义时，立刻换道，不空着回来。',
+  headline: ['主源取不到，', '就换备用源。'],
+  intro: '17 个学科各有一条主源和一条备用源。主源拿不到权威定义时直接换道，不空着返回。',
   ports: [
     { name: '术语在线', role: '中文术语主源', desc: '全学科术语的国标译名与定义。' },
-    { name: 'Oxford Reference', role: '英文权威释义', desc: '跨人文学科的快速权威释义。' },
+    { name: 'Oxford Reference', role: '英文权威释义', desc: '人文学科的快速权威释义。' },
     { name: 'IEEE Xplore', role: '计算机 / 工程', desc: '论文级定义与研究进展。' },
     { name: 'SEP', role: '哲学 / 伦理学', desc: '概念的源流与争论脉络。' },
   ],
@@ -489,21 +495,21 @@ export const interfaces = {
 
 export const trust = {
   eyebrow: '可信性',
-  headline: ['不编，', '不容有失。'],
+  headline: ['不编来源，', '不藏失败。'],
   intro:
-    '一个解释工具最危险的不是答不上来，而是答得很像。所以它宁可标“未验证”，也不肯补一个看起来合理的链接。',
+    '解释工具最容易出错的地方，是给出一段看起来合理、却没人核对过的内容。搜不到来源时，它会标注“未联网验证”，并把延伸阅读留空。',
   items: [
-    { title: '引用必标注', copy: '每条外部信息都带标题与链接，方便你回头核对。' },
-    { title: '禁止编造 URL', copy: '搜不到就留空，不虚构来源，不假装读过。' },
+    { title: '引用必标注', copy: '每条外部信息都带标题与链接，方便你回头核对原文。' },
+    { title: '禁止编造 URL', copy: '搜不到就留空。宁可少一条参考，也不写一个打不开的地址。' },
     { title: '降级必说明', copy: '切换策略、简化公式、退回 Markdown，都会写明原因。' },
-    { title: '临时文件即删', copy: '探测与导出的中间文件用后即删，不留垃圾。' },
+    { title: '临时文件即删', copy: '探测与导出产生的中间文件用后即删，不留在输出目录里。' },
   ],
 }
 
 export const upgrade = {
   eyebrow: '版本对比',
-  headline: ['想升级，', '时机正正好。'],
-  intro: '从 v1.0.0 到 v1.4.2，改变的不是功能数量，而是每次交付的可信程度。',
+  headline: ['从 1.0 到 1.4，', '改的是边界情况。'],
+  intro: '两个版本的功能数量差别不大，改动集中在边界情况的处理方式上。',
   columns: ['v1.0.0', 'v1.4.2（当前）'],
   rows: [
     { k: '联网搜索', a: '按需搜索', b: '每术语 ≥ 2 次，交叉验证' },
@@ -520,39 +526,39 @@ export const upgrade = {
 
 export const team = {
   eyebrow: '参赛信息',
-  headline: ['下次一定队，', '这次一定做完。'],
-  intro: '一支把“看不懂”当成工程问题来解决的队伍。',
+  headline: ['下次一定队。'],
+  intro: '参赛作品是学术术语解释器，下面是我们提交的材料与开发记录。',
   cards: [
-    { title: '参赛作品', copy: '学术术语解释器 · Academic Term Explainer', tag: '作品' },
+    { title: '参赛作品', copy: '学术术语解释器（Academic Term Explainer）', tag: '作品' },
     { title: '参赛团队', copy: '下次一定队', tag: '团队' },
-    { title: '技术栈', copy: 'Agent 技能 + 联网检索 + Markdown/PDF 渲染链', tag: '技术' },
+    { title: '技术栈', copy: 'Agent 技能、联网检索、Markdown 与 PDF 渲染链', tag: '技术' },
     { title: '开发周期', copy: '2026 年 7 月立项，10 月发布 v1.4.2', tag: '周期' },
     { title: '产品文档', copy: '产品技术文档 v2.0，含 15 项测试用例', tag: '文档' },
     { title: '演示材料', copy: '12 页作品演示稿与四张架构流程图', tag: '演示' },
-    { title: '交付形态', copy: 'Markdown 主交付，PDF 可选，命名带时间戳', tag: '交付' },
-    { title: '致谢', copy: '感谢评审老师与所有被术语绊住过的人', tag: '致谢' },
+    { title: '交付形态', copy: 'Markdown 为主交付物，PDF 可选，文件名带时间戳', tag: '交付' },
+    { title: '致谢', copy: '感谢评审老师，以及所有被术语绊住过的人', tag: '致谢' },
   ],
 }
 
 export const values = {
-  eyebrow: '我们的价值观',
-  headline: ['解释的底线，', '比解释本身更重要。'],
+  eyebrow: '我们的底线',
+  headline: ['三件不做的事。'],
   items: [
     {
-      title: '学术诚信',
-      copy: '所有外部信息必须可回溯。宁可标注“未联网验证”，也不虚构一条参考文献。',
+      title: '不编造来源',
+      copy: '搜不到就留空，并在文中标注“未联网验证”。一条打不开的参考文献，比没有参考文献更糟。',
       link: '查看可信性承诺',
       href: '#trust',
     },
     {
-      title: '可复现',
-      copy: '同一段文本、同一份配置，跑出来的结构与模块选择一致，便于复核与教学演示。',
+      title: '不复用过期缓存',
+      copy: '你声明环境变了（比如装了 XeLaTeX），就重新试跑一遍导出链路，不拿上次的结果顶替。',
       link: '查看技术规格',
       href: '#metrics',
     },
     {
-      title: '可解释',
-      copy: '它解释术语，也解释自己：为什么选这个词、为什么走这条路由、为什么降级。',
+      title: '不省略降级说明',
+      copy: 'PDF 生成失败、公式被简化、搜索切了策略，都会在回复里写明是哪一步、为什么。',
       link: '查看工作流',
       href: '#design',
     },
@@ -560,7 +566,7 @@ export const values = {
 }
 
 export const indexSection = {
-  headline: '学术阅读，本该如此。',
+  headline: '术语讲清楚，阅读继续。',
   links: [
     { title: '概览', items: ['能力一览', '工作流', '专业场景'] },
     { title: '引擎', items: ['术语提取 M1', '学科路由 M2', '联网搜索 M3', '模块拼装 M4'] },
@@ -573,11 +579,11 @@ export const footnotes = [
   '本页所有指标均为《学术术语解释器 · 产品技术文档 v2.0》中定义的目标值（FI / PI / QI 编号），非实测结果，实际表现依网络与运行环境而有所差异。',
   '术语提取准确率 ≥ 90% 为人工评估目标值，评估口径见文档 7.1 节 FI-01。',
   'PDF 四级降级链为 L1 → L2 → L3 → L5；L4（Marp）为幻灯片旁路，不参与主链探测。',
-  '页面设计版式参考 Apple 产品页的公开排版规范，仅用于竞赛展示，与 Apple Inc. 无隶属关系。',
+  '页面版式参考 Apple 产品页的公开排版规范，仅用于竞赛展示，与 Apple Inc. 无隶属关系。',
 ]
 
 export const footer = {
-  note: '本站为「下次一定队」参赛作品的产品介绍页。',
+  note: '本站为“下次一定队”参赛作品的产品介绍页。',
   columns: [
     { title: '产品', items: ['能力', '工作流', '技术规格', '版本对比'] },
     { title: '文档', items: ['产品技术文档 v2.0', '作品演示稿', '架构图', '测试用例'] },
