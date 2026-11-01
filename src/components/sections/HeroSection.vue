@@ -44,7 +44,7 @@ import HeroScene from './HeroScene.vue'
 <style scoped>
 .hero {
   position: relative;
-  padding-top: calc(var(--globalnav-height) + var(--localnav-height) + 56px);
+  padding-top: calc(var(--localnav-height) + 88px);
   padding-bottom: 0;
   background: radial-gradient(120% 80% at 50% -10%, #16161a 0%, #000 58%);
   overflow: hidden;
@@ -125,7 +125,7 @@ import HeroScene from './HeroScene.vue'
 
 @media (max-width: 1068px) {
   .hero {
-    padding-top: calc(var(--globalnav-height) + var(--localnav-height) + 72px);
+    padding-top: calc(var(--localnav-height) + 64px);
   }
   .hero__headline {
     margin-bottom: 24px;
@@ -140,7 +140,7 @@ import HeroScene from './HeroScene.vue'
 
 @media (max-width: 734px) {
   .hero {
-    padding-top: calc(var(--globalnav-height) + var(--localnav-height) + 48px);
+    padding-top: calc(var(--localnav-height) + 48px);
   }
   .hero__eyebrow {
     margin-bottom: 16px;

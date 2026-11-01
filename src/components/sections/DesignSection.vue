@@ -157,7 +157,7 @@ const steps = [
 
 .design__stage {
   position: sticky;
-  top: calc(var(--globalnav-height) + var(--localnav-height) + 40px);
+  top: calc(var(--localnav-height) + 40px);
   height: min(72vh, 640px);
 }
 
@@ -490,7 +490,7 @@ const steps = [
   }
   .design__stage {
     position: sticky;
-    top: calc(var(--globalnav-height) + 12px);
+    top: 12px;
     height: 56vh;
     z-index: 2;
   }

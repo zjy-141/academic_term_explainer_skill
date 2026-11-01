@@ -43,7 +43,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
 
 .trust__left {
   position: sticky;
-  top: calc(var(--globalnav-height) + var(--localnav-height) + 60px);
+  top: calc(var(--localnav-height) + 60px);
 }
 
 .trust__items {

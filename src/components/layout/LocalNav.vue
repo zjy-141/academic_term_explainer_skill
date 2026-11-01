@@ -10,7 +10,7 @@ let raf = 0
 
 const measure = () => {
   raf = 0
-  stuck.value = window.scrollY > 44
+  stuck.value = window.scrollY > 8
   if (lightStart) {
     isLight.value = lightStart.getBoundingClientRect().top <= 120
   }
@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .localnav {
   position: sticky;
-  top: var(--globalnav-height);
+  top: 0;
   z-index: 8000;
   height: var(--localnav-height);
   background: rgba(22, 22, 23, 0.72);

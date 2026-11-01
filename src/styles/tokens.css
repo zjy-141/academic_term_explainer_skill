@@ -14,7 +14,6 @@
   --section-padding-reduced: 120px;
 
   /* 导航高度 */
-  --globalnav-height: 44px;
   --localnav-height: 52px;
 
   /* 圆角 */
@@ -92,7 +91,6 @@
     --content-max-width: 420px;
     --section-padding: 112px;
     --section-padding-reduced: 56px;
-    --globalnav-height: 48px;
     --localnav-height: 48px;
   }
 }

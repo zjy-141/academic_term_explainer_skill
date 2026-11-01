@@ -13,14 +13,6 @@ export const site = {
 }
 
 export const nav = {
-  global: [
-    { label: '概览', href: '#hero' },
-    { label: '能力', href: '#highlights' },
-    { label: '引擎', href: '#extraction' },
-    { label: '指标', href: '#metrics' },
-    { label: '对比', href: '#upgrade' },
-    { label: '团队', href: '#team' },
-  ],
   local: [
     { label: '概览', href: '#hero' },
     { label: '工作流', href: '#design' },

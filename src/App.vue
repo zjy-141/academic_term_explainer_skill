@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted } from 'vue'
-import GlobalNav from './components/layout/GlobalNav.vue'
 import LocalNav from './components/layout/LocalNav.vue'
 import SiteFooter from './components/layout/SiteFooter.vue'
 import HeroSection from './components/sections/HeroSection.vue'
@@ -42,7 +41,6 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <GlobalNav />
   <LocalNav />
   <main>
     <HeroSection />

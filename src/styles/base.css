@@ -13,7 +13,7 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--globalnav-height) + var(--localnav-height));
+  scroll-padding-top: var(--localnav-height);
 }
 
 body {
