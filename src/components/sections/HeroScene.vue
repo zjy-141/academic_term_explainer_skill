@@ -6,6 +6,8 @@ import { prefersReducedMotion } from '../../composables/useSiteMotion'
 
 const root = ref<HTMLElement | null>(null)
 let ctx: gsap.Context | null = null
+let float: gsap.core.Tween | null = null
+let io: IntersectionObserver | null = null
 
 onMounted(() => {
   if (prefersReducedMotion() || !root.value) return
@@ -22,19 +24,34 @@ onMounted(() => {
       .from(q('.scene__term'), { y: 28, autoAlpha: 0, duration: 0.7, stagger: 0.14 }, 1.2)
       .from(q('.scene__meta'), { autoAlpha: 0, duration: 0.6 }, 1.7)
 
-    // 静态浮动
-    gsap.to(q('.scene__frame'), {
+    // 静态浮动（先暂停，进入视口再播；离屏时停掉，避免整页一直在跑动画）
+    float = gsap.to(q('.scene__frame'), {
       y: -10,
       duration: 5,
       repeat: -1,
       yoyo: true,
       ease: 'sine.inOut',
       delay: 2,
+      paused: true,
     })
   }, root.value)
+
+  io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) float?.play()
+        else float?.pause()
+      })
+    },
+    { threshold: 0 },
+  )
+  io.observe(root.value)
 })
 
-onBeforeUnmount(() => ctx?.revert())
+onBeforeUnmount(() => {
+  io?.disconnect()
+  ctx?.revert()
+})
 </script>
 
 <template>
@@ -154,6 +171,7 @@ onBeforeUnmount(() => ctx?.revert())
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  will-change: transform;
 }
 
 .scene__chrome {

@@ -26,21 +26,27 @@ export function initSiteMotion() {
   }
 
   // 1. 成组入场
+  //
+  // 卡片网格用 data-stagger="fade"：只淡入、不位移。
+  // 原因是这些卡片自己带 CSS 悬停位移，若 GSAP 在入场时写了内联 transform，
+  // 会同时接管悬停（CSS 规则失效），并且 CSS 过渡会把 GSAP 逐帧写入再平滑一次，
+  // 看起来就"发涩"。纯淡入能让悬停位移完全由合成层处理。
   gsap.utils.toArray<HTMLElement>('[data-stagger]').forEach((group) => {
     const items = Array.from(group.querySelectorAll<HTMLElement>('[data-stagger-item]'))
     if (!items.length) return
+    const fadeOnly = group.dataset.stagger === 'fade'
     if (!reduce) {
-      gsap.set(items, { y: 28, autoAlpha: 0 })
+      gsap.set(items, fadeOnly ? { autoAlpha: 0 } : { y: 28, autoAlpha: 0 })
       hidden.push(...items)
     }
     starters.set(group, () => {
       push(
         gsap.to(items, {
-          y: 0,
+          ...(fadeOnly ? {} : { y: 0 }),
           autoAlpha: 1,
-          duration: reduce ? 0.2 : 0.9,
+          duration: reduce ? 0.2 : fadeOnly ? 0.7 : 0.9,
           ease: 'power2.out',
-          stagger: reduce ? 0 : 0.075,
+          stagger: reduce ? 0 : fadeOnly ? 0.055 : 0.075,
           overwrite: 'auto',
         }),
       )

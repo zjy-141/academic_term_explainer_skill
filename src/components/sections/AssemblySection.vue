@@ -11,7 +11,7 @@ import StorySection from '../ui/StorySection.vue'
     :headline="assembly.headline"
     :intro="assembly.intro"
   >
-    <ul class="modules" data-stagger>
+    <ul class="modules" data-stagger="fade">
       <li v-for="m in assembly.modules" :key="m.key" class="module" data-stagger-item>
         <span class="module__key">{{ m.key }}</span>
         <div class="module__body">
@@ -90,6 +90,7 @@ import StorySection from '../ui/StorySection.vue'
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 14px;
+  will-change: transform;
   transition:
     transform var(--dur-base) var(--ease-out),
     box-shadow var(--dur-base) var(--ease-out);

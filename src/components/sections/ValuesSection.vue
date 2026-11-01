@@ -8,7 +8,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
     <div class="viewport-content">
       <TypeLockup :eyebrow="values.eyebrow" :lines="values.headline" align="left" size="l" />
 
-      <ul class="values__grid" data-stagger>
+      <ul class="values__grid" data-stagger="fade">
         <li v-for="(item, i) in values.items" :key="item.title" class="vcard" data-stagger-item>
           <div class="vcard__icon" aria-hidden="true">
             <!-- 不编造来源：盾牌 + 勾 -->
@@ -62,6 +62,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
   gap: 14px;
   align-content: start;
   min-height: 268px;
+  will-change: transform;
   transition: transform var(--dur-base) var(--ease-out);
 }
 

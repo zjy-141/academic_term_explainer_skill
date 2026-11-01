@@ -51,71 +51,51 @@ const setupMotion = () => {
 
     cards.forEach((card, i) => {
       const art = card.querySelector<HTMLElement>('.hl-card__art')
-      const svg = card.querySelector<SVGSVGElement>('.hl-card__art svg')
       const ring = card.querySelector<SVGElement>('.glyph__ring')
       const accents = card.querySelectorAll<SVGElement>('.glyph__accent')
-      const scan = card.querySelector<SVGElement>('.glyph__scan')
-      const glow = card.querySelector<HTMLElement>('.hl-card__glow')
-      if (!art || !svg) return
+      if (!art) return
 
       gsap.set(art, { scale: 1 })
 
-      // 每张卡片常驻一种轻微动效：外环自转 / 扫描线往返
-      let spin: gsap.core.Tween | null = null
-      let pulse: gsap.core.Tween | null = null
-      if (!reduce) {
-        if (ring) {
-          spin = gsap.to(ring, {
-            rotation: i % 2 === 0 ? -360 : 360,
-            svgOrigin: '60 60',
-            duration: 70 + i * 9,
-            ease: 'none',
-            repeat: -1,
-          })
-        }
-        if (scan) {
-          gsap.fromTo(
-            scan,
-            { y: -20 },
-            { y: 26, duration: 2.6, ease: 'sine.inOut', repeat: -1, yoyo: true },
-          )
-        }
-      }
-
+      /**
+       * 悬停只做有限时长的插值，不做常驻循环：
+       * SVG 里的 transform 无法被合成层单独提升，逐帧改 SVG 会让整张卡片每帧重绘，
+       * 鼠标跟随就会发涩。颜色变化交给 CSS 过渡（只影响合成后的 paint）。
+       */
       const onEnter = () => {
-        // 悬停：外环加速、图形放大、强调元素脉冲，全部由 GSAP 插值
-        if (spin) gsap.to(spin, { timeScale: 3.6, duration: 1, ease: 'power2.out' })
-        gsap.to(art, { scale: 1.06, duration: 0.8, ease: 'power3.out' })
-        gsap.to(svg, { color: 'rgba(255,255,255,0.76)', duration: 0.7, ease: 'power2.out' })
-        if (accents.length) {
-          gsap.to(accents, { stroke: '#64d2ff', duration: 0.7, ease: 'power2.out' })
-          pulse ??= gsap.to(accents, {
-            scale: 1.22,
-            transformOrigin: '50% 50%',
-            duration: 1.1,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut',
+        card.classList.add('is-hot')
+        if (reduce) return
+        gsap.to(card, { y: -6, duration: 0.34, ease: 'power2.out', overwrite: 'auto' })
+        gsap.to(art, { scale: 1.05, duration: 0.42, ease: 'power3.out', overwrite: 'auto' })
+        if (ring) {
+          gsap.to(ring, {
+            rotation: i % 2 === 0 ? -14 : 14,
+            svgOrigin: '60 60',
+            duration: 0.7,
+            ease: 'power2.out',
+            overwrite: 'auto',
           })
-          pulse.play()
         }
-        if (scan) gsap.to(scan, { opacity: 1, duration: 0.4 })
-        if (glow) gsap.to(glow, { opacity: 1, duration: 0.8, ease: 'power2.out' })
-        gsap.to(card, { y: -6, duration: 0.6, ease: 'power2.out' })
+        if (accents.length) {
+          gsap.to(accents, {
+            scale: 1.16,
+            transformOrigin: '50% 50%',
+            duration: 0.42,
+            ease: 'power2.out',
+            overwrite: 'auto',
+          })
+        }
       }
 
       const onLeave = () => {
-        if (spin) gsap.to(spin, { timeScale: 1, duration: 1.4, ease: 'power2.inOut' })
-        gsap.to(art, { scale: 1, duration: 1, ease: 'power3.inOut' })
-        gsap.to(svg, { color: 'rgba(255,255,255,0.42)', duration: 0.9, ease: 'power2.inOut' })
+        card.classList.remove('is-hot')
+        if (reduce) return
+        gsap.to(card, { y: 0, duration: 0.4, ease: 'power2.inOut', overwrite: 'auto' })
+        gsap.to(art, { scale: 1, duration: 0.5, ease: 'power2.inOut', overwrite: 'auto' })
+        if (ring) gsap.to(ring, { rotation: 0, duration: 0.7, ease: 'power2.inOut', overwrite: 'auto' })
         if (accents.length) {
-          gsap.to(accents, { stroke: '#2997ff', duration: 1, ease: 'power2.inOut' })
-          pulse?.pause()
-          gsap.to(accents, { scale: 1, duration: 0.6, ease: 'power2.out' })
+          gsap.to(accents, { scale: 1, duration: 0.5, ease: 'power2.inOut', overwrite: 'auto' })
         }
-        if (scan) gsap.to(scan, { opacity: 0.75, duration: 0.4 })
-        if (glow) gsap.to(glow, { opacity: 0.7, duration: 1, ease: 'power2.inOut' })
-        gsap.to(card, { y: 0, duration: 0.8, ease: 'power2.inOut' })
       }
 
       card.addEventListener('pointerenter', onEnter)
@@ -123,6 +103,7 @@ const setupMotion = () => {
       card.addEventListener('focusin', onEnter)
       card.addEventListener('focusout', onLeave)
       cleanups.push(() => {
+        card.classList.remove('is-hot')
         card.removeEventListener('pointerenter', onEnter)
         card.removeEventListener('pointerleave', onLeave)
         card.removeEventListener('focusin', onEnter)
@@ -311,6 +292,8 @@ onBeforeUnmount(() => {
   flex-direction: column;
   position: relative;
   isolation: isolate;
+  /* 悬停位移交给合成层，避免整卡逐帧重绘 */
+  will-change: transform;
 }
 
 .hl-card::before {
@@ -325,13 +308,26 @@ onBeforeUnmount(() => {
   -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 72%);
 }
 
-/* 动效由 GSAP 接管：这里只给初始状态，避免 CSS 过渡与 GSAP 抢同一属性 */
+/* 动效：位移动画由 GSAP 接管，颜色/透明度交给 CSS 过渡（不逐帧改 SVG） */
 .hl-card__art {
   margin: 10px auto 0;
   width: 196px;
   color: rgba(255, 255, 255, 0.42);
   transform-origin: 50% 50%;
   will-change: transform;
+  transition: color 0.36s var(--ease-out);
+}
+
+.hl-card.is-hot .hl-card__art {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.hl-card__art :deep(.glyph__accent) {
+  transition: stroke 0.36s var(--ease-out);
+}
+
+.hl-card.is-hot .hl-card__art :deep(.glyph__accent) {
+  stroke: #64d2ff;
 }
 
 .hl-card__art svg {
@@ -352,7 +348,12 @@ onBeforeUnmount(() => {
   filter: blur(30px);
   opacity: 0.7;
   z-index: -1;
-  transition: opacity var(--dur-slow) var(--ease-out);
+  will-change: opacity;
+  transition: opacity 0.5s var(--ease-out);
+}
+
+.hl-card.is-hot .hl-card__glow {
+  opacity: 1;
 }
 
 .hl-card:nth-child(3n + 2) .hl-card__glow {

@@ -8,7 +8,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
     <div class="viewport-content">
       <TypeLockup :eyebrow="team.eyebrow" :lines="team.headline" :intro="team.intro" size="l" />
 
-      <ul class="team__grid" data-stagger>
+      <ul class="team__grid" data-stagger="fade">
         <li v-for="card in team.cards" :key="card.title" class="tcard" data-stagger-item>
           <span class="tcard__tag mono">{{ card.tag }}</span>
           <div class="tcard__body">
@@ -44,6 +44,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
   justify-content: space-between;
   gap: 24px;
   overflow: hidden;
+  will-change: transform;
   transition:
     transform var(--dur-base) var(--ease-out),
     box-shadow var(--dur-base) var(--ease-out);
