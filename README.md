@@ -107,7 +107,7 @@ web/
 - `data-count`：数字滚动计数
 - Hero 场景与「设计」区块：入场时间轴、粘性视窗随滚动切换、日志自动滚动
 
-无障碍与降级：`prefers-reduced-motion: reduce` 时不注册任何动画，全部内容直接可见；每个交互控件都有 `aria-label` / `aria-selected`，横向画廊可用键盘聚焦并滚动。
+无障碍与降级：默认播放完整动效（本页动画本身即内容的一部分）；`<html>` 上挂 `reduced-motion` 类时，GSAP 与 CSS 过渡全部退化为极短淡入，不再有位移，页脚的 **「动效：完整 / 精简」** 开关可随时切换并写入 `localStorage`。每个交互控件都有 `aria-label` / `aria-selected` / `aria-pressed`，横向画廊可用键盘聚焦并滚动，翻页按钮在首尾自动禁用。
 
 ---
 

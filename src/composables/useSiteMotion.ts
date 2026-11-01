@@ -3,28 +3,27 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+/** 是否处于「精简动效」模式（由 <html class="reduced-motion"> 决定） */
 export const prefersReducedMotion = () =>
-  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  typeof document !== 'undefined' && document.documentElement.classList.contains('reduced-motion')
 
 /** 站点级动效：用 data-* 声明，一次注册即可 */
 export function initSiteMotion() {
   const reduce = prefersReducedMotion()
-  if (reduce) {
-    document.documentElement.classList.add('no-motion')
-    return () => {}
-  }
 
   const ctx = gsap.context(() => {
+    // 精简模式下不做位移，只保留极短的淡入，避免“两态跳变”
+    const enter = reduce
+      ? { autoAlpha: 0, duration: 0.2, ease: 'none' as const }
+      : { y: 28, autoAlpha: 0, duration: 0.9, ease: 'power2.out' as const }
+
     // 1. 成组淡入上移
     gsap.utils.toArray<HTMLElement>('[data-stagger]').forEach((group) => {
       const items = group.querySelectorAll<HTMLElement>('[data-stagger-item]')
       if (!items.length) return
       gsap.from(items, {
-        y: 28,
-        autoAlpha: 0,
-        duration: 0.9,
-        ease: 'power2.out',
-        stagger: 0.075,
+        ...enter,
+        stagger: reduce ? 0 : 0.075,
         scrollTrigger: { trigger: group, start: 'top bottom-=12%', once: true },
       })
     })
@@ -32,33 +31,32 @@ export function initSiteMotion() {
     // 2. 单元素淡入
     gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
       gsap.from(el, {
-        y: 34,
-        autoAlpha: 0,
-        duration: 1,
-        ease: 'power2.out',
+        ...enter,
         scrollTrigger: { trigger: el, start: 'top bottom-=12%', once: true },
       })
     })
 
     // 3. 视差
-    gsap.utils.toArray<HTMLElement>('[data-parallax]').forEach((el) => {
-      const distance = Number(el.dataset.parallax || 12)
-      gsap.to(el, {
-        yPercent: distance,
-        ease: 'none',
-        scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true },
+    if (!reduce) {
+      gsap.utils.toArray<HTMLElement>('[data-parallax]').forEach((el) => {
+        const distance = Number(el.dataset.parallax || 12)
+        gsap.to(el, {
+          yPercent: distance,
+          ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true },
+        })
       })
-    })
+    }
 
     // 4. 条形图增长（宽度由模板写入 --bar-width）
     gsap.utils.toArray<HTMLElement>('[data-bar]').forEach((el) => {
       gsap.fromTo(
         el,
-        { scaleX: 0.02 },
+        { scaleX: reduce ? 1 : 0.02 },
         {
           scaleX: 1,
           transformOrigin: 'left center',
-          duration: 1.1,
+          duration: reduce ? 0 : 1.1,
           ease: 'power3.out',
           scrollTrigger: { trigger: el, start: 'top bottom-=10%', once: true },
         },
@@ -72,7 +70,7 @@ export function initSiteMotion() {
       const obj = { v: 0 }
       gsap.to(obj, {
         v: target,
-        duration: 1.4,
+        duration: reduce ? 0 : 1.4,
         ease: 'power2.out',
         scrollTrigger: { trigger: el, start: 'top bottom-=12%', once: true },
         onUpdate: () => {

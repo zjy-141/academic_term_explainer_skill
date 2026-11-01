@@ -1,5 +1,29 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { footnotes, footer } from '../../data/content'
+
+const MOTION_KEY = 'atm-motion'
+const motionOn = ref(true)
+
+const readMotion = () => !document.documentElement.classList.contains('reduced-motion')
+
+onMounted(() => {
+  motionOn.value = readMotion()
+})
+
+const toggleMotion = () => {
+  const next = !motionOn.value
+  motionOn.value = next
+  document.documentElement.classList.toggle('reduced-motion', !next)
+  try {
+    localStorage.setItem(MOTION_KEY, next ? 'full' : 'reduced')
+  } catch {
+    /* 隐私模式下忽略 */
+  }
+  window.dispatchEvent(new CustomEvent('atm:motion'))
+}
+
+onBeforeUnmount(() => {})
 </script>
 
 <template>
@@ -26,6 +50,15 @@ import { footnotes, footer } from '../../data/content'
 
         <div class="sitefooter__legal">
           <p v-for="line in footer.legal" :key="line">{{ line }}</p>
+          <button
+            class="motion-toggle"
+            type="button"
+            :aria-pressed="motionOn"
+            @click="toggleMotion"
+          >
+            <span class="motion-toggle__dot" :class="{ 'is-on': motionOn }" aria-hidden="true"></span>
+            动效：{{ motionOn ? '完整' : '精简' }}
+          </button>
         </div>
       </div>
     </div>
@@ -103,11 +136,44 @@ import { footnotes, footer } from '../../data/content'
 .sitefooter__legal {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
   gap: 8px 24px;
   padding-top: 24px;
   font-size: 12px;
   color: var(--glyph-light-tertiary);
+}
+
+.motion-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  color: var(--glyph-light-secondary);
+  background: rgba(0, 0, 0, 0.05);
+  transition:
+    background-color 0.2s var(--ease-out),
+    color 0.2s var(--ease-out);
+}
+
+.motion-toggle:hover {
+  background: rgba(0, 0, 0, 0.09);
+  color: var(--glyph-light);
+}
+
+.motion-toggle__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #b0b0b5;
+  transition: background-color 0.2s var(--ease-out);
+}
+
+.motion-toggle__dot.is-on {
+  background: #0071e3;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.16);
 }
 
 @media (max-width: 734px) {
@@ -117,6 +183,7 @@ import { footnotes, footer } from '../../data/content'
   }
   .sitefooter__legal {
     flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>

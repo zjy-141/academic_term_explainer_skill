@@ -13,7 +13,7 @@ withDefaults(
 </script>
 
 <template>
-  <div class="lockup" :class="[`lockup--${align}`, `lockup--${size}`]">
+  <div class="lockup" :class="[`lockup--${align}`, `lockup--${size}`]" data-stagger>
     <p v-if="eyebrow" class="lockup__eyebrow type-eyebrow" data-stagger-item>{{ eyebrow }}</p>
     <h2 class="lockup__headline" data-stagger-item>
       <span v-for="(line, i) in lines" :key="i" class="lockup__line">{{ line }}</span>

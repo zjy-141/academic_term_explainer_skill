@@ -24,11 +24,21 @@ import { initSiteMotion } from './composables/useSiteMotion'
 
 let dispose: (() => void) | undefined
 
-onMounted(() => {
+const setupMotion = () => {
+  dispose?.()
   dispose = initSiteMotion()
+}
+
+onMounted(() => {
+  setupMotion()
+  // 页脚的「动效」开关会广播事件，这里重建 GSAP 时间轴
+  window.addEventListener('atm:motion', setupMotion)
 })
 
-onBeforeUnmount(() => dispose?.())
+onBeforeUnmount(() => {
+  window.removeEventListener('atm:motion', setupMotion)
+  dispose?.()
+})
 </script>
 
 <template>
