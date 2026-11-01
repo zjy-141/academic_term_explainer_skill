@@ -56,7 +56,7 @@ web/
     │   ├── useSiteMotion.ts   站点级动效：成组淡入、视差、条形图增长、数字滚动
     │   └── useSceneProgress.ts 粘性场景的滚动进度组合式函数
     └── components/
-        ├── layout/            GlobalNav · LocalNav · SiteFooter（脚注 + 页脚）
+        ├── layout/            LocalNav · SiteFooter（脚注 + 页脚）
         ├── ui/                TypeLockup · SectionHeader · StorySection
         └── sections/          Hero · Highlights · Design · Extraction · Routing · Search
                                Assembly · Recursion · Reliability · Workflows · Metrics
@@ -71,7 +71,7 @@ web/
 
 | 参考页 | 本站 | 还原要点 |
 | --- | --- | --- |
-| Global nav / Local nav | 双层导航 | 44px + 52px、`backdrop-filter` 毛玻璃、滚动后加深；进入浅色区块时局部导航切换浅色主题 |
+| Local nav | 页面导航 | 52px、`backdrop-filter` 毛玻璃、滚动后加深；进入浅色区块时切换浅色主题（全局导航按需求移除） |
 | Media hero | Hero | 32px 眉标两行 + 80px 主标题 + 发售信息 + 价格 + 胶囊按钮 + 全宽产品视窗 |
 | Highlights | 先刷重点 | 区块头（左标题 / 右链接）+ 横向卡片画廊 + 圆形翻页按钮 |
 | Product viewer | 设计 | 左粘性视窗 + 右滚动文案，视窗内容随滚动切换（输入 → 处理 → 输出） |

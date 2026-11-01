@@ -38,25 +38,24 @@
 
 | # | 参考页 section | 本站对应 | 内容要点 |
 | --- | --- | --- | --- |
-| 1 | Global nav | 全局导航 | 品牌 + 概览 / 能力 / 技术规格 / 团队 + 搜索、行动按钮 |
-| 2 | Local nav | 局部导航 | 概览 · 技术规格 · 机型比较 → 概览 · 工作流 · 指标 · 对比；右侧「立即体验」 |
-| 3 | Media hero | Hero | 眉标 `学术术语解释器 Academic Term Explainer` + 主标题「术语之墙，一读即通」+ v1.4.2 + CTA |
-| 4 | Highlights（先刷重点） | 先刷重点 | 7 张横向卡片：提取 / 路由 / 联网 / 拼装 / 递归 / 输出 / 指标 |
-| 5 | Product viewer（设计） | 设计 · 一屏看懂 | 粘性产品视窗：输入 → 输出 Markdown / PDF 三种形态切换 |
-| 6 | Display（PROLED XDR 显示屏） | 引擎一 · 术语提取 M1 | 大字标题「重点，一眼拎清」+ 评分规则可视化 |
-| 7 | Touch（屏幕触控） | 引擎二 · 学科路由 M2 | 「9 组歧义，指哪打哪」+ 歧义消解交互 |
-| 8 | Dynamic Island（灵动岛） | 引擎三 · 联网搜索 M3 | 「实时检索，顶上见」+ L1–L4 搜索阶梯 |
-| 9 | Performance（M5 Pro/Max） | 引擎四 · 模块拼装 M4 | 两张芯片式卡片 + 耗时基准条形图（≤30s / ≤8min…） |
-| 10 | AI | 引擎五 · 递归澄清 M5 | 「AI 递归，界绝世高手」+ 两层递归树 |
-| 11 | Battery（续航） | 输出可靠性 M6–M8 | 「从 L1 到 L5，一直有输出」降级链 |
-| 12 | Workflows（专业工作流） | 专业场景 | 9 类学科场景 Tab：医学 / 法学 / 金融 / 教育 / 工程 / 哲学 / 新闻 / 艺术 / 通用 |
-| 13 | Audio & camera | 指标 | 音质的对应物：数据网格（准确率、成功率、覆盖率、时效性） |
-| 14 | Ports（端口） | 跨学科接口 | 「一接上，全学科联通」17 学科映射 |
-| 15 | Security（安全性） | 可信性 | 四项承诺：引用必标注 / 禁止编造 URL / 临时文件清理 / 降级说明 |
-| 16 | Upgrader（升级） | 版本对比 | v1.0.0 → v1.4.2 对比表 |
-| 17 | Incentive（选购 8 卡） | 参赛团队 | 8 张卡片：作品 / 团队 / 技术栈 / 周期 / 文档 / 演示 / 交付 / 致谢 |
-| 18 | Values（价值观 3 卡） | 价值观 | 学术诚信 / 可复现 / 可解释 |
-| 19 | Index + footnotes + footer | 结尾 / 脚注 / 页脚 | 「学术阅读，本该如此。」+ 站点索引 + 脚注 + 页脚 |
+| 1 | Local nav | 页面导航 | 学术术语解释器 + v1.4.2 · 概览 / 工作流 / 技术规格 / 版本对比 · 右侧「立即体验」（全局导航按需求移除） |
+| 2 | Media hero | Hero | 眉标「面向跨学科阅读 / 学术术语解释器」+ 主标题「看懂为止」+ v1.4.2 已发布 + CTA |
+| 3 | Highlights（先刷重点） | 先刷重点 | 7 张横向卡片：提取 / 路由 / 检索 / 拼装 / 递归 / 降级 / 引用，各配专属 SVG |
+| 4 | Product viewer（设计） | 工作流 | 粘性产品视窗：输入 → 处理 → 输出三态切换 |
+| 5 | Display（PROLED XDR 显示屏） | 引擎一 · 术语提取 M1 | 「先挑出 / 真正难懂的词」+ 评分权重与阈值规则 |
+| 6 | Touch（屏幕触控） | 引擎二 · 学科路由 M2 | 「再送进 / 对的那个学科」+ 歧义词消解交互 |
+| 7 | Dynamic Island（灵动岛） | 引擎三 · 联网搜索 M3 | 「逐个去查 / 最新的定义」+ L1–L4 搜索阶梯 |
+| 8 | Performance（M5 Pro/Max） | 引擎四 · 模块拼装 M4 | 「按复杂度 / 决定写多长」+ 两张链路卡片 + 耗时上限条形图 |
+| 9 | AI | 引擎五 · 递归澄清 M5 | 「遇到新词，/ 就地补一层」+ 两层递归树 |
+| 10 | Battery（续航） | 输出可靠性 M6–M8 | 「导出失败，/ 也还有文件」+ L1→L5 降级链 |
+| 11 | Workflows（专业工作流） | 专业场景 | 9 类学科场景 Tab：医学 / 法学 / 金融 / 教育 / 计算机 / 哲学 / 新闻 / 环境 / 通用 |
+| 12 | Audio & camera | 指标 | 8 项目标值，无卡片无分隔线，直接排在背景上 |
+| 13 | Ports（端口） | 跨学科接口 | 「主源取不到，/ 就换备用源」+ 17 学科映射 |
+| 14 | Security（安全性） | 可信性 | 四项承诺：引用必标注 / 禁止编造 URL / 降级说明 / 临时文件清理 |
+| 15 | Upgrader（升级） | 版本对比 | v1.0.0 → v1.4.2 对比表 |
+| 16 | Incentive（选购 8 卡） | 参赛团队 | 8 张卡片：作品 / 团队 / 技术栈 / 周期 / 文档 / 演示 / 交付 / 致谢 |
+| 17 | Values（价值观 3 卡） | 价值观 | 三件不做的事：不编造来源 / 不复用过期缓存 / 不省略降级说明 |
+| 18 | Index + footnotes + footer | 结尾 / 脚注 / 页脚 | 「术语讲清楚，阅读继续。」+ 站点索引 + 脚注 + 页脚 |
 
 ---
 
@@ -70,11 +69,11 @@ web/
 └── src/
     ├── main.ts / App.vue
     ├── styles/          tokens.css · base.css · utilities.css
-    ├── composables/     useReveal.ts · useStickyScene.ts · useMediaQuery.ts
+    ├── composables/     useSiteMotion.ts（IntersectionObserver + GSAP 入场动效）
     ├── data/            content.ts（全部文案与指标集中管理）
     └── components/
-        ├── layout/      GlobalNav · LocalNav · SiteFooter · Footnotes
-        ├── ui/          TypeLockup · SectionHeader · ActionButton · GlassCard · Bar
+        ├── layout/      LocalNav · SiteFooter（脚注 + 页脚）
+        ├── ui/          TypeLockup · SectionHeader · StorySection · HighlightGlyph
         └── sections/    Hero · Highlights · Design · Extraction · Routing · Search
                          · Assembly · Recursion · Reliability · Workflows · Metrics
                          · Interfaces · Trust · Upgrade · Team · Values · Index
@@ -84,14 +83,14 @@ web/
 
 1. `feat: 初始化 Vue3 + TS + Vite + GSAP 工程骨架`
 2. `feat: 建立 Apple 设计令牌与全局样式`
-3. `feat: 全局导航与局部导航`
+3. `feat: 局部导航与页脚`（全局导航后续按需求移除）
 4. `feat: Hero 首屏与入场动画`
 5. `feat: 先刷重点卡片画廊`
-6. `feat: 设计（粘性产品视窗）`
+6. `feat: 工作流粘性产品视窗`
 7. `feat: 术语提取引擎区块`
 8. `feat: 学科路由区块`
 9. `feat: 联网搜索区块`
-10. `feat: 模块拼装与性能基准`
+10. `feat: 模块拼装与耗时上限`
 11. `feat: 递归澄清区块`
 12. `feat: 输出降级链区块`
 13. `feat: 专业场景 Tab 画廊`
@@ -103,8 +102,8 @@ web/
 
 ## 五、验收标准
 
-- [ ] 内容宽度、断点、区块留白、字号阶梯与参考页逐项一致
-- [ ] 深色/浅色区块交替节奏与参考页一致
-- [ ] 粘性字标、滚动淡入、横向画廊、条形图增长等动效存在且可降级
-- [ ] 三档断点（1440 / 1024 / 390）下排版不塌陷
-- [ ] `pnpm build` 通过，无 TS 报错
+- [x] 内容宽度、断点、区块留白、字号阶梯与参考页逐项一致
+- [x] 深色/浅色区块交替节奏与参考页一致
+- [x] 滚动淡入、横向画廊、条形图增长、悬停位移等动效存在且可降级
+- [x] 三档断点（1440 / 1024 / 390）下排版不塌陷
+- [x] `pnpm build` 通过，无 TS 报错
