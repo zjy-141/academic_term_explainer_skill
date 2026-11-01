@@ -160,18 +160,6 @@ onBeforeUnmount(() => {
             {{ highlights.film }}
             <span class="chevron" aria-hidden="true">›</span>
           </a>
-          <div class="highlights__nav">
-            <button type="button" aria-label="上一张" :disabled="atStart" @click="scrollByCard(-1)">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
-            <button type="button" aria-label="下一张" :disabled="atEnd" @click="scrollByCard(1)">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9.5 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
-          </div>
         </div>
       </header>
     </div>
@@ -198,10 +186,23 @@ onBeforeUnmount(() => {
       </ul>
     </div>
 
-    <div class="viewport-content">
+    <div class="viewport-content highlights__foot">
       <p class="highlights__footnote">
         七张卡片对应七个能力，点开 <a class="link-inline" href="#extraction">引擎</a> 一节可以逐条看实现。
       </p>
+
+      <div class="highlights__nav">
+        <button type="button" aria-label="上一张" :disabled="atStart" @click="scrollByCard(-1)">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14.5 5 7.5 12l7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button type="button" aria-label="下一张" :disabled="atEnd" @click="scrollByCard(1)">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9.5 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
     </div>
   </section>
 </template>
@@ -211,7 +212,7 @@ onBeforeUnmount(() => {
   background: var(--bg-dark);
 }
 
-/* 区块头：标题左，链接与翻页按钮右 */
+/* 区块头：标题左、演示链接右 */
 .highlights__head {
   display: flex;
   flex-wrap: wrap;
@@ -234,9 +235,19 @@ onBeforeUnmount(() => {
   line-height: 1.2353641176;
 }
 
+/* 画廊下方一行：左侧说明，右侧翻页按钮 */
+.highlights__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 4px;
+}
+
 .highlights__nav {
   display: flex;
   gap: 10px;
+  flex: none;
 }
 
 .highlights__nav button {
@@ -391,7 +402,6 @@ onBeforeUnmount(() => {
 }
 
 .highlights__footnote {
-  margin-top: 8px;
   font-size: 12px;
   line-height: 1.4;
   letter-spacing: -0.01em;
@@ -424,8 +434,13 @@ onBeforeUnmount(() => {
     font-size: 14px;
     gap: 16px;
   }
+  .highlights__foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
   .highlights__nav {
-    display: none;
+    align-self: flex-end;
   }
   .hl-card {
     width: 78vw;
