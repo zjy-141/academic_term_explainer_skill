@@ -39,36 +39,38 @@ const selectWord = (i: number) => {
           </button>
         </div>
 
-        <div class="routing__panel">
-          <div class="routing__headline">
-            <p class="routing__word">{{ current.word }}</p>
-            <p class="routing__hint mono">按共现词判定学科 · 9 组规则</p>
+        <Transition name="rpanel" mode="out-in">
+          <div :key="current.word" class="routing__panel">
+            <div class="routing__headline">
+              <p class="routing__word">{{ current.word }}</p>
+              <p class="routing__hint mono">按共现词判定学科 · 9 组规则</p>
+            </div>
+
+            <ul class="cases">
+              <li
+                v-for="(c, i) in current.cases"
+                :key="c.field + i"
+                class="case"
+                :class="{ 'is-active': activeCase === i }"
+                @mouseenter="activeCase = i"
+                @focusin="activeCase = i"
+              >
+                <button type="button" class="case__inner" @click="activeCase = i">
+                  <span class="case__context">{{ c.context }}</span>
+                  <span class="case__arrow" aria-hidden="true">→</span>
+                  <span class="case__result">
+                    <span class="case__field">{{ c.field }}</span>
+                    <span class="case__source mono">{{ c.source }}</span>
+                  </span>
+                </button>
+              </li>
+            </ul>
+
+            <p class="routing__foot mono">
+              共 9 组歧义词 · 此处展示 5 组 · 完整规则见技术文档 4.3 节
+            </p>
           </div>
-
-          <ul class="cases">
-            <li
-              v-for="(c, i) in current.cases"
-              :key="c.field + i"
-              class="case"
-              :class="{ 'is-active': activeCase === i }"
-              @mouseenter="activeCase = i"
-              @focusin="activeCase = i"
-            >
-              <button type="button" class="case__inner" @click="activeCase = i">
-                <span class="case__context">{{ c.context }}</span>
-                <span class="case__arrow" aria-hidden="true">→</span>
-                <span class="case__result">
-                  <span class="case__field">{{ c.field }}</span>
-                  <span class="case__source mono">{{ c.source }}</span>
-                </span>
-              </button>
-            </li>
-          </ul>
-
-          <p class="routing__foot mono">
-            共 9 组歧义词 · 此处展示 5 组 · 完整规则见技术文档 4.3 节
-          </p>
-        </div>
+        </Transition>
       </div>
 
       <aside class="routing__aside" data-stagger-item>
@@ -310,6 +312,24 @@ const selectWord = (i: number) => {
   font-size: 11px;
   letter-spacing: 0.04em;
   color: var(--glyph-tertiary);
+}
+
+/* 切换歧义词时的淡入上移 */
+.rpanel-enter-active,
+.rpanel-leave-active {
+  transition:
+    opacity 0.24s var(--ease-out),
+    transform 0.24s var(--ease-out);
+}
+
+.rpanel-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.rpanel-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
 }
 
 @media (max-width: 1068px) {

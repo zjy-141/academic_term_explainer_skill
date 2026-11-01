@@ -32,29 +32,31 @@ const current = computed(() => workflows.tabs[active.value])
         </button>
       </div>
 
-      <div class="workflows__panel" role="tabpanel" :aria-label="current.label">
-        <div class="wcopy">
-          <p class="wcopy__app mono">{{ current.app }}</p>
-          <h3 class="wcopy__title">{{ current.title }}</h3>
-          <p class="wcopy__text">{{ current.copy }}</p>
-          <p class="wcopy__terms-label mono">可能被提取到的术语</p>
-          <div class="wcopy__terms">
-            <span v-for="term in current.terms" :key="term" class="wterm">{{ term }}</span>
+      <Transition name="wpanel" mode="out-in">
+        <div :key="current.key" class="workflows__panel" role="tabpanel" :aria-label="current.label">
+          <div class="wcopy">
+            <p class="wcopy__app mono">{{ current.app }}</p>
+            <h3 class="wcopy__title">{{ current.title }}</h3>
+            <p class="wcopy__text">{{ current.copy }}</p>
+            <p class="wcopy__terms-label mono">可能被提取到的术语</p>
+            <div class="wcopy__terms">
+              <span v-for="term in current.terms" :key="term" class="wterm">{{ term }}</span>
+            </div>
+          </div>
+
+          <div class="wsources glass-card">
+            <p class="wsources__label mono">检索路径</p>
+            <ol class="wsources__list">
+              <li v-for="(source, i) in current.sources" :key="source" class="wsource">
+                <span class="wsource__index mono">0{{ i + 1 }}</span>
+                <span class="wsource__name">{{ source }}</span>
+                <span class="wsource__state">已接</span>
+              </li>
+            </ol>
+            <p class="wsources__foot mono">多学科命中时并行检索，不串源</p>
           </div>
         </div>
-
-        <div class="wsources glass-card">
-          <p class="wsources__label mono">检索路径</p>
-          <ol class="wsources__list">
-            <li v-for="(source, i) in current.sources" :key="source" class="wsource">
-              <span class="wsource__index mono">0{{ i + 1 }}</span>
-              <span class="wsource__name">{{ source }}</span>
-              <span class="wsource__state">已接</span>
-            </li>
-          </ol>
-          <p class="wsources__foot mono">多学科命中时并行检索，不串源</p>
-        </div>
-      </div>
+      </Transition>
     </div>
   </section>
 </template>
@@ -136,6 +138,24 @@ const current = computed(() => workflows.tabs[active.value])
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: 20px;
   align-items: stretch;
+}
+
+/* 切换学科时的淡入上移 */
+.wpanel-enter-active,
+.wpanel-leave-active {
+  transition:
+    opacity 0.28s var(--ease-out),
+    transform 0.28s var(--ease-out);
+}
+
+.wpanel-enter-from {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.wpanel-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
 }
 
 .wcopy {
