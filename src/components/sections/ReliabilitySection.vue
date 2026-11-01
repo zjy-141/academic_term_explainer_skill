@@ -6,11 +6,15 @@ import StorySection from '../ui/StorySection.vue'
 <template>
   <StorySection
     section-id="reliability"
-    ghost="M6–M8"
+    ghost="M7"
     :eyebrow="reliability.eyebrow"
     :headline="reliability.headline"
     :intro="reliability.intro"
   >
+    <p class="reliability__modules mono" data-reveal>
+      <span v-for="tag in reliability.moduleTags" :key="tag" class="reliability__module">{{ tag }}</span>
+    </p>
+
     <ol class="chain" data-stagger>
       <li v-for="(link, i) in reliability.chain" :key="link.level" class="chain__item">
         <div class="chain__card" :class="{ 'is-first': i === 0 }" data-stagger-item>
@@ -52,6 +56,37 @@ import StorySection from '../ui/StorySection.vue'
 </template>
 
 <style scoped>
+.reliability__modules {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin-bottom: 26px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--glyph-secondary);
+}
+
+.reliability__module {
+  position: relative;
+  padding-right: 18px;
+}
+
+.reliability__module::after {
+  content: '·';
+  position: absolute;
+  right: 6px;
+  color: var(--glyph-tertiary);
+}
+
+.reliability__module:last-child {
+  padding-right: 0;
+}
+
+.reliability__module:last-child::after {
+  content: none;
+}
+
 .chain {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
