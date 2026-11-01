@@ -11,8 +11,8 @@ import { indexSection, site } from '../../data/content'
         <div v-for="col in indexSection.links" :key="col.title" class="icol" data-stagger-item>
           <p class="icol__title">{{ col.title }}</p>
           <ul class="icol__list">
-            <li v-for="item in col.items" :key="item">
-              <a class="icol__link" href="#hero">{{ item }}</a>
+            <li v-for="item in col.items" :key="item.href + item.label">
+              <a class="icol__link" :href="item.href">{{ item.label }}</a>
             </li>
           </ul>
         </div>

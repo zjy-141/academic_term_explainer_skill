@@ -561,10 +561,40 @@ export const values = {
 export const indexSection = {
   headline: '术语讲清楚，阅读继续。',
   links: [
-    { title: '概览', items: ['能力一览', '工作流', '专业场景'] },
-    { title: '引擎', items: ['术语提取 M1', '学科路由 M2', '联网搜索 M3', '模块拼装 M4'] },
-    { title: '输出', items: ['递归澄清 M5', 'Markdown M6', 'PDF 降级链 M7', '环境探测 M8'] },
-    { title: '关于', items: ['技术规格', '版本对比', '参赛团队'] },
+    {
+      title: '概览',
+      items: [
+        { label: '能力一览', href: '#highlights' },
+        { label: '工作流', href: '#design' },
+        { label: '专业场景', href: '#workflows' },
+      ],
+    },
+    {
+      title: '引擎',
+      items: [
+        { label: '术语提取 M1', href: '#extraction' },
+        { label: '学科路由 M2', href: '#routing' },
+        { label: '联网搜索 M3', href: '#search' },
+        { label: '模块拼装 M4', href: '#assembly' },
+      ],
+    },
+    {
+      title: '输出',
+      items: [
+        { label: '递归澄清 M5', href: '#recursion' },
+        { label: 'Markdown M6', href: '#reliability' },
+        { label: 'PDF 降级链 M7', href: '#chain' },
+        { label: '环境探测 M8', href: '#probe' },
+      ],
+    },
+    {
+      title: '关于',
+      items: [
+        { label: '技术规格', href: '#metrics' },
+        { label: '版本对比', href: '#upgrade' },
+        { label: '参赛团队', href: '#team' },
+      ],
+    },
   ],
 }
 
@@ -572,7 +602,6 @@ export const footnotes = [
   '本页所有指标均为《学术术语解释器 · 产品技术文档 v2.0》中定义的目标值（FI / PI / QI 编号），非实测结果，实际表现依网络与运行环境而有所差异。',
   '术语提取准确率 ≥ 90% 为人工评估目标值，评估口径见文档 7.1 节 FI-01。',
   'PDF 四级降级链为 L1 → L2 → L3 → L5；L4（Marp）为幻灯片旁路，不参与主链探测。',
-  '页面版式参考 Apple 产品页的公开排版规范，仅用于竞赛展示，与 Apple Inc. 无隶属关系。',
 ]
 
 export const footer = {

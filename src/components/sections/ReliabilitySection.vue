@@ -15,7 +15,7 @@ import StorySection from '../ui/StorySection.vue'
       <span v-for="tag in reliability.moduleTags" :key="tag" class="reliability__module">{{ tag }}</span>
     </p>
 
-    <ol class="chain" data-stagger>
+    <ol id="chain" class="chain" data-stagger>
       <li v-for="(link, i) in reliability.chain" :key="link.level" class="chain__item">
         <div class="chain__card" :class="{ 'is-first': i === 0 }" data-stagger-item>
           <div class="chain__top">
@@ -41,7 +41,7 @@ import StorySection from '../ui/StorySection.vue'
         </div>
       </div>
 
-      <div class="probe glass-card" data-stagger-item>
+      <div id="probe" class="probe glass-card" data-stagger-item>
         <p class="probe__label mono">环境探测</p>
         <dl class="probe__list">
           <div v-for="item in reliability.probe" :key="item.k">
