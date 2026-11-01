@@ -6,12 +6,15 @@ import { prefersReducedMotion } from '../../composables/useSiteMotion'
 
 const root = ref<HTMLElement | null>(null)
 let ctx: gsap.Context | null = null
-let float: gsap.core.Tween | null = null
-let io: IntersectionObserver | null = null
 
 onMounted(() => {
   if (prefersReducedMotion() || !root.value) return
 
+  /**
+   * 只做一次性入场，不做常驻浮动。
+   * 这块视窗有 1100×700 的尺寸 + 多层阴影，一旦常驻逐帧位移，
+   * 在集显机器上会持续占用合成/光栅化，鼠标操作就发涩。
+   */
   ctx = gsap.context((self) => {
     const q = self.selector!
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -23,35 +26,10 @@ onMounted(() => {
       .from(q('.scene__mark'), { scaleX: 0, transformOrigin: 'left center', duration: 0.5, stagger: 0.1 }, 1.05)
       .from(q('.scene__term'), { y: 28, autoAlpha: 0, duration: 0.7, stagger: 0.14 }, 1.2)
       .from(q('.scene__meta'), { autoAlpha: 0, duration: 0.6 }, 1.7)
-
-    // 静态浮动（先暂停，进入视口再播；离屏时停掉，避免整页一直在跑动画）
-    float = gsap.to(q('.scene__frame'), {
-      y: -10,
-      duration: 5,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
-      delay: 2,
-      paused: true,
-    })
   }, root.value)
-
-  io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) float?.play()
-        else float?.pause()
-      })
-    },
-    { threshold: 0 },
-  )
-  io.observe(root.value)
 })
 
-onBeforeUnmount(() => {
-  io?.disconnect()
-  ctx?.revert()
-})
+onBeforeUnmount(() => ctx?.revert())
 </script>
 
 <template>
@@ -171,7 +149,6 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  will-change: transform;
 }
 
 .scene__chrome {
