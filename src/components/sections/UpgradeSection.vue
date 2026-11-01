@@ -43,29 +43,31 @@ import TypeLockup from '../ui/TypeLockup.vue'
   margin-top: 56px;
   border-radius: var(--radius-card);
   background: #fff;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
 
 .compare__head,
 .compare__row {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.9fr) minmax(0, 1.3fr);
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 0.86fr) minmax(0, 1.42fr);
   gap: 0;
   align-items: stretch;
 }
 
 .compare__head {
   background: #f5f5f7;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .compare__cell {
-  padding: 20px 24px;
-  font-size: 14px;
-  line-height: 1.45;
+  padding: 20px 26px;
+  font-size: 15px;
+  line-height: 1.5;
   color: var(--glyph-light-secondary);
-  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .compare__cell:first-child {
@@ -74,6 +76,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
 
 .compare__cell--feature {
   font-family: var(--font-display);
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.022em;
   color: var(--glyph-light);
@@ -84,6 +87,11 @@ import TypeLockup from '../ui/TypeLockup.vue'
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.011em;
+  color: var(--glyph-light);
+}
+
+.compare__head .compare__cell--old {
+  color: var(--glyph-light-secondary);
 }
 
 .compare__head .is-current {
@@ -91,28 +99,33 @@ import TypeLockup from '../ui/TypeLockup.vue'
 }
 
 .compare__row {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .compare__row:last-of-type {
   border-bottom: 0;
 }
 
+/* 旧版：灰但可读；新版：实色 + 淡蓝底，一眼能分出哪列是当前版本 */
 .compare__cell--old {
-  color: var(--glyph-light-tertiary);
+  color: #6e6e73;
 }
 
 .compare__cell--new {
   color: var(--glyph-light);
-  background: rgba(0, 113, 227, 0.045);
+  font-weight: 500;
+  background: rgba(0, 113, 227, 0.07);
+  box-shadow:
+    inset 1px 0 0 rgba(0, 113, 227, 0.16),
+    inset -1px 0 0 rgba(0, 113, 227, 0.16);
 }
 
 .compare__note {
-  padding: 16px 24px;
-  font-size: 12px;
-  color: var(--glyph-light-tertiary);
-  background: #fbfbfd;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 16px 26px;
+  font-size: 13px;
+  color: var(--glyph-light-secondary);
+  background: #f5f5f7;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 1068px) {
@@ -121,7 +134,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
   }
   .compare__cell {
     padding: 16px 18px;
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
@@ -137,15 +150,16 @@ import TypeLockup from '../ui/TypeLockup.vue'
   .compare__cell {
     padding: 2px 0;
     border-left: 0;
-    font-size: 13px;
+    font-size: 14px;
   }
   .compare__cell--new {
     background: transparent;
+    box-shadow: none;
     font-weight: 500;
   }
   .compare__cell--old::before {
     content: '旧版：';
-    color: var(--glyph-light-tertiary);
+    color: var(--glyph-light-secondary);
   }
   .compare__cell--new::before {
     content: '新版：';
@@ -153,6 +167,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
   }
   .compare__note {
     padding: 14px 18px;
+    font-size: 12px;
   }
 }
 </style>
