@@ -457,7 +457,7 @@ export const metrics = {
 export const interfaces = {
   eyebrow: '接口',
   headline: ['主源搜不到，', '就换备用源。'],
-  intro: '17 个学科各有一条主源和一条备用源。主源搜不到权威定义时直接换道，不空着返回。',
+  intro: '17 个学科各有一条主源和一条备用源。主源搜不到权威定义时直接换源，不返回空值。',
   ports: [
     { name: '术语在线', role: '中文术语主源', desc: '全学科术语的国标译名与定义。' },
     { name: 'Oxford Reference', role: '英文权威释义', desc: '人文学科的快速权威释义。' },
