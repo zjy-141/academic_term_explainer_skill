@@ -112,6 +112,17 @@ web/
 
 ---
 
+## 体验包下载
+
+页面上的**「立即体验」**（顶部导航 + 首屏）是下载按钮，点击后下载 `skill.zip`。
+
+- 文件位置：`public/skill.zip`，构建时原样复制到 `dist/skill.zip`
+- 包内容：`SKILL.md`、`manifest.yaml`、`evals.json`
+- 换包只需替换 `public/skill.zip`，无需改代码；按钮点击后会短暂显示「已开始下载」
+- `href` 用 `import.meta.env.BASE_URL` 拼接，所以在根路径、子路径或本地文件打开都能正确指向
+
+---
+
 ## 内容来源
 
 - 文案与指标来自《学术术语解释器 · 产品技术文档 v2.0》与《作品演示2.pptx》
