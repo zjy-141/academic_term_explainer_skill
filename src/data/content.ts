@@ -131,9 +131,9 @@ export const design = {
 
 export const extraction = {
   eyebrow: 'M1 · 术语提取',
-  headline: ['先挑出', '真正难懂的词。'],
+  headline: ['先挑出', '真正难懂的词'],
   intro:
-    '一段一千字的论文摘要，难点通常只有三到五个词。引擎给每个候选词打分：出现频率、复合词根、作者是否加粗强调、是否领域专名、是否切题。总分达到阈值才进入解释队列；候选不足时降低阈值，仍然不足就全部提取。',
+    '一段近百字的论文摘要，难点通常在关键的三到五个词。引擎给每个候选词打分：出现频率、复合词根、作者是否加粗强调、是否领域专名、是否切题。总分达到阈值才进入解释队列；候选不足时降低阈值，仍然不足就全部提取。',
   weightTitle: '评分权重',
   weights: [
     { score: '+3', label: '出现频率 ≥ 3 次', note: '核心概念' },
@@ -162,9 +162,9 @@ export const extraction = {
 
 export const routing = {
   eyebrow: 'M2 · 学科路由',
-  headline: ['再送进', '正确的学科。'],
+  headline: ['再送进', '正确的学科'],
   intro:
-    '同一个词在不同学科里有不同的概念。“推理”在 AI 论文中指模型延迟，在心理学论文中指判断偏误。路由模块先扫描信号词，再按 9 组共现规则消除歧义，最后匹配数据源。',
+    '同一个词在不同学科里有不同的概念。路由模块先扫描信号词，再按 9 组共现规则消除歧义，最后匹配数据源。',
   ambiguities: [
     {
       word: '推理',
@@ -216,7 +216,7 @@ export const routing = {
 
 export const search = {
   eyebrow: 'M3 · 联网搜索',
-  headline: ['逐个查找', '最新的定义。'],
+  headline: ['逐个查找', '最新的定义'],
   intro:
     '学术术语的含义会随研究进展变化，所以引擎不依赖模型记忆答题。每个术语至少检索两次：中文定义打底，英文原词交叉验证，需要前沿进展时再进行一次领域限定搜索。',
   levels: [
@@ -236,7 +236,7 @@ export const search = {
 
 export const assembly = {
   eyebrow: 'M4 · 模块拼装',
-  headline: ['按复杂度', '决定解释长度。'],
+  headline: ['按复杂度', '决定解释长度'],
   intro:
     '解释不是越长越好。拼装引擎按术语复杂度选择模块：核心概念分成六块，边缘术语只输出定义和原文含义。所有术语至少包含 A 与 B。',
   modules: [
@@ -270,22 +270,22 @@ export const assembly = {
     },
   ],
   benchmarkTitle: '耗时上限',
-  benchmarkNote: '单位为秒，满格为 30 秒。端到端（10 个术语）目标 ≤ 8 分钟，超出本图。',
+  benchmarkNote: '单位为秒，满格为 100 秒。端到端（10 个术语）目标 ≤ 8 分钟。',
   benchmarks: [
-    { label: 'PDF 生成与加载', display: '≤ 3 秒', ratio: 10 },
-    { label: '术语提取（每千字）', display: '≤ 5 秒', ratio: 17 },
-    { label: '单术语解释生成', display: '≤ 15 秒', ratio: 50 },
-    { label: 'L3 副本导出', display: '≤ 20 秒', ratio: 67 },
-    { label: '单术语联网检索', display: '≤ 30 秒', ratio: 100 },
-    { label: '环境探测（真实测试）', display: '≤ 30 秒', ratio: 100 },
+    { label: '术语提取（每千字）', display: '≤ 5 秒', ratio: 10 },
+    { label: '单术语解释生成', display: '≤ 10 秒', ratio: 20 },
+    { label: 'L3 副本导出', display: '≤ 10 秒', ratio: 20 },
+    { label: '单术语联网检索', display: '≤ 20 秒', ratio: 40 },
+    { label: 'PDF 生成与加载', display: '≤ 25 秒', ratio: 50 },
+    { label: '环境探测（真实测试）', display: '≤ 20 秒', ratio: 40},
   ],
 }
 
 export const recursion = {
   eyebrow: 'M5 · 递归澄清',
-  headline: ['遇到新词，', '就地再解释。'],
+  headline: ['遇到新词，', '就地再解释'],
   intro:
-    '解释正文里又出现没见过的词，读者还是会被绊住。引擎会扫描生成的每一句，把仍然复杂的概念挑出来单独解释，深度到两层停止。',
+    '解释文本中又出现了没见过的词，读者还是会被绊住。引擎会扫描生成的每一句，把仍然复杂的概念挑出来单独解释，深度到两层停止。',
   tree: {
     root: { name: '脉冲时序依赖可塑性', en: 'STDP' },
     children: [
@@ -304,7 +304,7 @@ export const recursion = {
 
 export const output = {
   eyebrow: '输出',
-  headline: ['导出失败，', '也还有文件。'],
+  headline: ['导出失败，', '也还有文件'],
   intro:
     '不同机器安装的软件和环境不同。输出前会真实试跑一次，按 L1、L2、L3、L5 的顺序命中第一个可用的方案；四者都不可用时，仍然可以输出 Markdown 。',
   moduleTags: ['M6 Markdown 生成', 'M7 PDF 转换', 'M8 环境探测'],
@@ -351,7 +351,7 @@ export const output = {
 
 export const workflows = {
   eyebrow: '专业场景',
-  headline: ['先看学科，', '再看数据源。'],
+  headline: ['先看学科，', '再看数据源'],
   intro: '17 个学科各自的主源和备用源都已接入。选一个领域，看它会把术语送到哪里求证。',
   tabs: [
     {
@@ -440,7 +440,7 @@ export const workflows = {
 
 export const metrics = {
   eyebrow: '指标',
-  headline: ['目标值，', '都能核对。'],
+  headline: ['目标值，', '都能核对'],
   intro: '下列数值为目标值，每一项都对应产品技术文档中的指标编号，可在技术规格一节逐条核对。',
   stats: [
     { value: '≥ 90', unit: '%', label: '术语提取准确率', code: 'FI-01' },
@@ -456,7 +456,7 @@ export const metrics = {
 
 export const interfaces = {
   eyebrow: '接口',
-  headline: ['主源搜不到，', '就换备用源。'],
+  headline: ['主源搜不到，', '就换备用源'],
   intro: '17 个学科各有一条主源和一条备用源。主源搜不到权威定义时直接换源，不返回空值。',
   ports: [
     { name: '术语在线', role: '中文术语主源', desc: '全学科术语的国标译名与定义。' },
@@ -488,7 +488,7 @@ export const interfaces = {
 
 export const trust = {
   eyebrow: '可信性',
-  headline: ['不编来源，', '不藏失败。'],
+  headline: ['不编来源，', '不藏失败'],
   intro:
     '解释工具最容易出错的地方，是给出一段看起来合理、却没人核对过的内容。搜不到来源时，它会标注“未联网验证”，并把延伸阅读留空。',
   items: [
@@ -519,7 +519,7 @@ export const upgrade = {
 
 export const team = {
   eyebrow: '参赛信息',
-  headline: ['下次一定队。'],
+  headline: ['下次一定队'],
   intro: '参赛作品是学术术语解释器，下面是我们提交的材料与开发记录。',
   cards: [
     { title: '参赛作品', copy: '学术术语解释器（Academic Term Explainer）', tag: '作品' },
