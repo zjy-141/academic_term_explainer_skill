@@ -1,0 +1,98 @@
+/* ==========================================================================
+   设计令牌 —— 数值取自参考页 apple.com.cn 的 built CSS 实测值
+   ========================================================================== */
+
+:root {
+  /* 栅格与内容宽度 */
+  --content-width: 87.5%;
+  --content-max-width: 1260px;
+  --content-max-width-hero: 1680px;
+  --gutter: 20px;
+
+  /* 区块留白（144 / 120 / 112） */
+  --section-padding: 144px;
+  --section-padding-reduced: 120px;
+
+  /* 导航高度 */
+  --globalnav-height: 44px;
+  --localnav-height: 52px;
+
+  /* 圆角 */
+  --radius-card: 28px;
+  --radius-card-small: 18px;
+  --radius-pill: 980px;
+  --radius-control: 12px;
+
+  /* 背景 */
+  --bg-dark: #000;
+  --bg-dark-alt: #1d1d1f;
+  --bg-dark-elevated: #161617;
+  --bg-light: #fff;
+  --bg-light-alt: #f5f5f7;
+
+  /* 文字（深色区块） */
+  --glyph: #f5f5f7;
+  --glyph-alpha: rgba(255, 255, 255, 0.92);
+  --glyph-secondary: #86868b;
+  --glyph-secondary-alpha: rgba(255, 255, 255, 0.56);
+  --glyph-tertiary: #6e6e73;
+  --glyph-alt: #d2d2d7;
+
+  /* 文字（浅色区块） */
+  --glyph-light: #1d1d1f;
+  --glyph-light-secondary: #6e6e73;
+  --glyph-light-tertiary: #86868b;
+
+  /* 链接与控件 */
+  --link-dark: #2997ff;
+  --link-dark-hover: #6bb2ff;
+  --link-light: #0066cc;
+  --link-light-hover: #0071e3;
+  --button-bg: #0071e3;
+  --button-bg-hover: #0077ed;
+  --button-neutral-bg: #f5f5f7;
+  --button-neutral-color: #000;
+
+  /* 分隔线 */
+  --divider-dark: rgba(255, 255, 255, 0.12);
+  --divider-light: rgba(0, 0, 0, 0.1);
+
+  /* 字体栈：参考页使用 SF Pro，Windows 回退雅黑 */
+  --font-display: 'SF Pro Display', 'SF Pro SC', 'SF Pro Icons', 'PingFang SC', 'Helvetica Neue',
+    'Microsoft YaHei UI', 'Microsoft YaHei', Helvetica, Arial, sans-serif;
+  --font-text: 'SF Pro Text', 'SF Pro SC', 'SF Pro Icons', 'PingFang SC', 'Helvetica Neue',
+    'Microsoft YaHei UI', 'Microsoft YaHei', Helvetica, Arial, sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas,
+    'Courier New', monospace;
+
+  /* 动效 */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 0.2s;
+  --dur-base: 0.4s;
+  --dur-slow: 0.8s;
+
+  /* 主题别名（区块内通过 .theme-dark / .theme-light 覆盖） */
+  --section-bg: var(--bg-dark);
+  --text-primary: var(--glyph);
+  --text-secondary: var(--glyph-secondary);
+  --link: var(--link-dark);
+}
+
+@media (max-width: 1068px) {
+  :root {
+    --section-padding: 120px;
+    --section-padding-reduced: 80px;
+  }
+}
+
+@media (max-width: 734px) {
+  :root {
+    --content-width: 87.5%;
+    --content-max-width: 420px;
+    --section-padding: 112px;
+    --section-padding-reduced: 56px;
+    --globalnav-height: 48px;
+    --localnav-height: 48px;
+  }
+}
