@@ -306,7 +306,7 @@ export const reliability = {
   eyebrow: 'M7 · PDF 输出',
   headline: ['导出失败，', '也还有文件。'],
   intro:
-    '不同机器装的东西不一样。导出前会真实试跑一次，按 L1、L2、L3、L5 的顺序命中第一个可用的方案；四者都不可用时，Markdown 仍然交付。',
+    '不同机器安装的软件和环境不同。导出前会真实试跑一次，按 L1、L2、L3、L5 的顺序命中第一个可用的方案；四者都不可用时，Markdown 仍然交付。',
   moduleTags: ['M6 Markdown 生成', 'M7 PDF 转换', 'M8 环境探测'],
   chain: [
     {
