@@ -50,7 +50,7 @@ const { href: downloadHref, filename: downloadName, started, onDownload } = useS
     </div>
 
     <p class="hero__sosumi viewport-content">
-      面向跨学科的术语解读工具 · {{ site.team }} · {{ site.version }}
+      面向跨学科的术语解读SKILL · {{ site.team }} · {{ site.version }}
     </p>
   </section>
 </template>

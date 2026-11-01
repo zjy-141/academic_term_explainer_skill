@@ -16,7 +16,7 @@ export const nav = {
   local: [
     { label: '概览', href: '#hero' },
     { label: '工作流', href: '#workflow' },
-    { label: '技术规格', href: '#metrics' },
+    { label: '技术指标', href: '#metrics' },
     { label: '版本对比', href: '#upgrade' },
   ],
   cta: { label: '立即体验', href: '#workflow' },
@@ -270,14 +270,14 @@ export const assembly = {
     },
   ],
   benchmarkTitle: '耗时上限',
-  benchmarkNote: '单位为秒，满格 = 30 秒。端到端（10 个术语）目标 ≤ 8 分钟，超出本图刻度。',
+  benchmarkNote: '单位为秒，满格为 30 秒。端到端（10 个术语）目标 ≤ 8 分钟，超出本图。',
   benchmarks: [
     { label: 'PDF 生成与加载', display: '≤ 3 秒', ratio: 10 },
     { label: '术语提取（每千字）', display: '≤ 5 秒', ratio: 17 },
     { label: '单术语解释生成', display: '≤ 15 秒', ratio: 50 },
     { label: 'L3 副本导出', display: '≤ 20 秒', ratio: 67 },
     { label: '单术语联网检索', display: '≤ 30 秒', ratio: 100 },
-    { label: '环境探测（真实试跑）', display: '≤ 30 秒', ratio: 100 },
+    { label: '环境探测（真实测试）', display: '≤ 30 秒', ratio: 100 },
   ],
 }
 
@@ -563,7 +563,7 @@ export const footerNav = {
     {
       title: '概览',
       items: [
-        { label: '能力一览', href: '#highlights' },
+        { label: '先刷重点', href: '#highlights' },
         { label: '工作流', href: '#workflow' },
         { label: '专业场景', href: '#scenarios' },
       ],
@@ -585,9 +585,9 @@ export const footerNav = {
     {
       title: '关于',
       items: [
-        { label: '技术规格', href: '#metrics' },
+        { label: '技术指标', href: '#metrics' },
         { label: '版本对比', href: '#upgrade' },
-        { label: '参赛团队', href: '#team' },
+        { label: '参赛信息', href: '#team' },
       ],
     },
   ],

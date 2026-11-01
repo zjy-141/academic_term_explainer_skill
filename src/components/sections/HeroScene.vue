@@ -42,7 +42,7 @@ onBeforeUnmount(() => ctx?.revert())
       <div class="scene__frame">
         <div class="scene__chrome">
           <span class="scene__dots"><i></i><i></i><i></i></span>
-          <span class="scene__path mono">academic_terms_ai-medical-ethics_{{ site.year }}1015-1430.md</span>
+          <span class="scene__path mono">SKILL.md</span>
           <span class="scene__badge mono">{{ site.version }}</span>
         </div>
 
