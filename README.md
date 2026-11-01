@@ -98,14 +98,15 @@ web/
 
 ## 动效
 
-全部动效由 GSAP + ScrollTrigger 驱动，通过 `data-*` 声明，逻辑集中在 `useSiteMotion.ts`：
+入场动效由 **GSAP + IntersectionObserver** 驱动，通过 `data-*` 声明，逻辑集中在 `useSiteMotion.ts`：
 
-- `data-stagger` / `data-stagger-item`：成组淡入上移（0.9s，stagger 0.075s，`once: true`）
+- `data-stagger` / `data-stagger-item`：成组淡入上移（0.9s，stagger 0.075s，触发一次）
 - `data-reveal`：单元素淡入
-- `data-parallax="12"`：视差位移
-- `data-bar`：条形图 `scaleX` 增长（宽度由模板写入 `--bar-width`）
+- `data-bar`：条形图 `scaleX` 增长（宽度由模板写入 `--bar-width`，动画只负责从 0 展开）
 - `data-count`：数字滚动计数
-- Hero 场景与「设计」区块：入场时间轴、粘性视窗随滚动切换、日志自动滚动
+- Hero 场景、能力卡片、设计区块：各自用 GSAP 时间轴（入场、常驻自转/扫描、悬停插值）
+
+> 入场没有用 ScrollTrigger：它在 `refresh()`（load / resize）时会重置尚未播完的 `from` 动画，导致卡片网格停在半路、条形图停在起点。IntersectionObserver 是单向触发，不受刷新影响。
 
 无障碍与降级：默认播放完整动效（本页动画本身即内容的一部分）；`<html>` 上挂 `reduced-motion` 类时，GSAP 与 CSS 过渡全部退化为极短淡入，不再有位移，页脚的 **「动效：完整 / 精简」** 开关可随时切换并写入 `localStorage`。每个交互控件都有 `aria-label` / `aria-selected` / `aria-pressed`，横向画廊可用键盘聚焦并滚动，翻页按钮在首尾自动禁用。
 
