@@ -35,30 +35,19 @@ import TypeLockup from '../ui/TypeLockup.vue'
   background: linear-gradient(180deg, #000 0%, #08080a 50%, #000 100%);
 }
 
-/* 不做卡片：数字直接坐在区块背景上，只用细线分栏 */
+/* 不做卡片、也不画分隔线：数字直接排在区块背景上，只靠留白分组 */
 .metrics__grid {
   margin-top: 64px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  column-gap: 32px;
+  row-gap: 56px;
 }
 
 .metric {
-  padding: 34px 28px 32px;
   display: grid;
   gap: 6px;
   align-content: start;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.metric:nth-child(4n + 1) {
-  border-left: 0;
-  padding-left: 0;
-}
-
-.metric:nth-child(4n) {
-  padding-right: 0;
 }
 
 .metric__value {
@@ -92,7 +81,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
 }
 
 .metrics__note {
-  margin-top: 28px;
+  margin-top: 64px;
   text-align: center;
   font-size: 12px;
   color: var(--glyph-tertiary);
@@ -102,21 +91,8 @@ import TypeLockup from '../ui/TypeLockup.vue'
   .metrics__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-top: 40px;
-  }
-  .metric {
-    padding: 26px 22px 26px;
-  }
-  .metric:nth-child(4n + 1),
-  .metric:nth-child(4n) {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-  .metric:nth-child(odd) {
-    border-left: 0;
-    padding-left: 0;
-  }
-  .metric:nth-child(even) {
-    padding-right: 0;
+    column-gap: 24px;
+    row-gap: 40px;
   }
   .metric__value {
     font-size: 44px;
@@ -124,19 +100,9 @@ import TypeLockup from '../ui/TypeLockup.vue'
 }
 
 @media (max-width: 734px) {
-  .metric {
-    padding: 22px 16px 22px;
-  }
-  .metric:nth-child(4n + 1),
-  .metric:nth-child(4n) {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .metric:nth-child(odd) {
-    padding-left: 0;
-  }
-  .metric:nth-child(even) {
-    padding-right: 0;
+  .metrics__grid {
+    column-gap: 16px;
+    row-gap: 32px;
   }
   .metric__value {
     font-size: 34px;
