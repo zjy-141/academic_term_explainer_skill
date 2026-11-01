@@ -139,7 +139,7 @@ onBeforeUnmount(() => {
         </h2>
 
         <div class="highlights__controls" data-stagger-item>
-          <a class="link-inline" href="#design">
+          <a class="link-inline" href="#workflow">
             {{ highlights.film }}
             <span class="chevron" aria-hidden="true">›</span>
           </a>

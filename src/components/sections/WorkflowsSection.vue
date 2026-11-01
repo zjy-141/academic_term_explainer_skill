@@ -7,7 +7,7 @@ const current = computed(() => workflows.tabs[active.value])
 </script>
 
 <template>
-  <section id="workflows" class="section workflows theme-dark" aria-label="专业场景">
+  <section id="scenarios" class="section workflows theme-dark" aria-label="专业场景">
     <div class="viewport-content">
       <div class="workflows__head" data-stagger>
         <p class="workflows__eyebrow type-eyebrow" data-stagger-item>{{ workflows.eyebrow }}</p>

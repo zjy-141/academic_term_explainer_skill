@@ -41,7 +41,7 @@ const steps = [
 </script>
 
 <template>
-  <section id="design" class="section design theme-dark" aria-label="设计与工作流">
+  <section id="workflow" class="section design theme-dark" aria-label="工作流">
     <div class="viewport-content">
       <TypeLockup :eyebrow="design.eyebrow" :lines="design.headline" :intro="design.intro" size="xl" />
     </div>

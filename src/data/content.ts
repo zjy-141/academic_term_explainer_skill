@@ -15,11 +15,11 @@ export const site = {
 export const nav = {
   local: [
     { label: '概览', href: '#hero' },
-    { label: '工作流', href: '#design' },
+    { label: '工作流', href: '#workflow' },
     { label: '技术规格', href: '#metrics' },
     { label: '版本对比', href: '#upgrade' },
   ],
-  cta: { label: '立即体验', href: '#design' },
+  cta: { label: '立即体验', href: '#workflow' },
 }
 
 export const hero = {
@@ -29,7 +29,7 @@ export const hero = {
   releaseValue: 'v1.4.2',
   price: '无需注册 · 支持 Markdown 与 PDF 导出',
   note: '*',
-  primaryCta: { label: '立即体验', href: '#design' },
+  primaryCta: { label: '立即体验', href: '#workflow' },
   secondaryCta: { label: '查看技术规格', href: '#metrics' },
   source: {
     label: '原文',
@@ -553,7 +553,7 @@ export const values = {
       title: '不省略降级说明',
       copy: 'PDF 生成失败、公式被简化、搜索切了策略，都会在回复里写明是哪一步、为什么。',
       link: '查看工作流',
-      href: '#design',
+      href: '#workflow',
     },
   ],
 }
@@ -565,8 +565,8 @@ export const indexSection = {
       title: '概览',
       items: [
         { label: '能力一览', href: '#highlights' },
-        { label: '工作流', href: '#design' },
-        { label: '专业场景', href: '#workflows' },
+        { label: '工作流', href: '#workflow' },
+        { label: '专业场景', href: '#scenarios' },
       ],
     },
     {
@@ -582,9 +582,7 @@ export const indexSection = {
       title: '输出',
       items: [
         { label: '递归澄清 M5', href: '#recursion' },
-        { label: 'Markdown M6', href: '#reliability' },
-        { label: 'PDF 降级链 M7', href: '#chain' },
-        { label: '环境探测 M8', href: '#probe' },
+        { label: 'Markdown 与降级链 M6–M8', href: '#reliability' },
       ],
     },
     {
