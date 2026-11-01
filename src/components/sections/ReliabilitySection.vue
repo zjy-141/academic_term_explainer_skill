@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { reliability } from '../../data/content'
+import { output } from '../../data/content'
 import StorySection from '../ui/StorySection.vue'
 </script>
 
 <template>
   <StorySection
-    section-id="reliability"
-    ghost="M7"
-    :eyebrow="reliability.eyebrow"
-    :headline="reliability.headline"
-    :intro="reliability.intro"
+    section-id="output"
+    ghost="输出"
+    :eyebrow="output.eyebrow"
+    :headline="output.headline"
+    :intro="output.intro"
   >
-    <p class="reliability__modules mono" data-reveal>
-      <span v-for="tag in reliability.moduleTags" :key="tag" class="reliability__module">{{ tag }}</span>
+    <p class="output__modules mono" data-reveal>
+      <span v-for="tag in output.moduleTags" :key="tag" class="output__module">{{ tag }}</span>
     </p>
 
     <ol id="chain" class="chain" data-stagger>
-      <li v-for="(link, i) in reliability.chain" :key="link.level" class="chain__item">
+      <li v-for="(link, i) in output.chain" :key="link.level" class="chain__item">
         <div class="chain__card" :class="{ 'is-first': i === 0 }" data-stagger-item>
           <div class="chain__top">
             <span class="chain__level mono">{{ link.level }}</span>
@@ -25,18 +25,18 @@ import StorySection from '../ui/StorySection.vue'
           <p class="chain__name">{{ link.name }}</p>
           <p class="chain__note">{{ link.note }}</p>
         </div>
-        <span v-if="i < reliability.chain.length - 1" class="chain__arrow" aria-hidden="true">→</span>
+        <span v-if="i < output.chain.length - 1" class="chain__arrow" aria-hidden="true">→</span>
       </li>
     </ol>
 
-    <div class="reliability" data-stagger>
+    <div class="output" data-stagger>
       <div class="bypass" data-stagger-item>
-        <span class="bypass__level mono">{{ reliability.bypass.level }}</span>
+        <span class="bypass__level mono">{{ output.bypass.level }}</span>
         <div>
-          <p class="bypass__name">{{ reliability.bypass.name }}</p>
-          <p class="bypass__note">{{ reliability.bypass.note }}</p>
+          <p class="bypass__name">{{ output.bypass.name }}</p>
+          <p class="bypass__note">{{ output.bypass.note }}</p>
           <div class="bypass__triggers">
-            <span v-for="t in reliability.bypass.triggers" :key="t" class="bypass__trigger">{{ t }}</span>
+            <span v-for="t in output.bypass.triggers" :key="t" class="bypass__trigger">{{ t }}</span>
           </div>
         </div>
       </div>
@@ -44,19 +44,19 @@ import StorySection from '../ui/StorySection.vue'
       <div id="probe" class="probe glass-card" data-stagger-item>
         <p class="probe__label mono">环境探测</p>
         <dl class="probe__list">
-          <div v-for="item in reliability.probe" :key="item.k">
+          <div v-for="item in output.probe" :key="item.k">
             <dt>{{ item.k }}</dt>
             <dd>{{ item.v }}</dd>
           </div>
         </dl>
-        <p class="probe__cleanup">{{ reliability.cleanup }}</p>
+        <p class="probe__cleanup">{{ output.cleanup }}</p>
       </div>
     </div>
   </StorySection>
 </template>
 
 <style scoped>
-.reliability__modules {
+.output__modules {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -67,23 +67,23 @@ import StorySection from '../ui/StorySection.vue'
   color: var(--glyph-secondary);
 }
 
-.reliability__module {
+.output__module {
   position: relative;
   padding-right: 18px;
 }
 
-.reliability__module::after {
+.output__module::after {
   content: '·';
   position: absolute;
   right: 6px;
   color: var(--glyph-tertiary);
 }
 
-.reliability__module:last-child {
+.output__module:last-child {
   padding-right: 0;
 }
 
-.reliability__module:last-child::after {
+.output__module:last-child::after {
   content: none;
 }
 
@@ -157,7 +157,7 @@ import StorySection from '../ui/StorySection.vue'
   font-size: 14px;
 }
 
-.reliability {
+.output {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   gap: 20px;
@@ -260,7 +260,7 @@ import StorySection from '../ui/StorySection.vue'
   .chain__arrow {
     display: none;
   }
-  .reliability {
+  .output {
     grid-template-columns: 1fr;
   }
 }

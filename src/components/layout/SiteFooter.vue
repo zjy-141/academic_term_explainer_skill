@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { footnotes, footer } from '../../data/content'
+import { onMounted, ref } from 'vue'
+import { footnotes, footer, footerNav } from '../../data/content'
 
 const MOTION_KEY = 'atm-motion'
 const motionOn = ref(true)
 
-const readMotion = () => !document.documentElement.classList.contains('reduced-motion')
-
 onMounted(() => {
-  motionOn.value = readMotion()
+  motionOn.value = !document.documentElement.classList.contains('reduced-motion')
 })
 
 const toggleMotion = () => {
@@ -22,8 +20,6 @@ const toggleMotion = () => {
   }
   window.dispatchEvent(new CustomEvent('atm:motion'))
 }
-
-onBeforeUnmount(() => {})
 </script>
 
 <template>
@@ -39,23 +35,20 @@ onBeforeUnmount(() => {})
       <div class="sitefooter">
         <p class="sitefooter__note">{{ footer.note }}</p>
 
-        <div class="sitefooter__columns">
-          <div v-for="col in footer.columns" :key="col.title" class="fcol">
+        <nav class="sitefooter__columns" aria-label="站点导航">
+          <div v-for="col in footerNav.columns" :key="col.title" class="fcol">
             <p class="fcol__title">{{ col.title }}</p>
             <ul class="fcol__list">
-              <li v-for="item in col.items" :key="item">{{ item }}</li>
+              <li v-for="item in col.items" :key="item.href + item.label">
+                <a class="fcol__link" :href="item.href">{{ item.label }}</a>
+              </li>
             </ul>
           </div>
-        </div>
+        </nav>
 
         <div class="sitefooter__legal">
           <p v-for="line in footer.legal" :key="line">{{ line }}</p>
-          <button
-            class="motion-toggle"
-            type="button"
-            :aria-pressed="motionOn"
-            @click="toggleMotion"
-          >
+          <button class="motion-toggle" type="button" :aria-pressed="motionOn" @click="toggleMotion">
             <span class="motion-toggle__dot" :class="{ 'is-on': motionOn }" aria-hidden="true"></span>
             动效：{{ motionOn ? '完整' : '精简' }}
           </button>
@@ -67,8 +60,9 @@ onBeforeUnmount(() => {})
 
 <style scoped>
 .footnote-area {
-  background: var(--bg-light-alt);
-  padding-top: 40px;
+  background: var(--bg-light);
+  padding-top: 56px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .footnotes {
@@ -99,38 +93,42 @@ onBeforeUnmount(() => {})
 .sitefooter__note {
   font-size: 12px;
   color: var(--glyph-light-tertiary);
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
+/* 与原来的「站点索引」同一套四列排法 */
 .sitefooter__columns {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px;
-  padding-bottom: 32px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  padding-bottom: 40px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .fcol__title {
-  font-size: 12px;
+  font-family: var(--font-display);
+  font-size: 17px;
   font-weight: 600;
+  letter-spacing: -0.022em;
   color: var(--glyph-light);
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .fcol__list {
   display: grid;
-  gap: 8px;
-  font-size: 12px;
+  gap: 10px;
+}
+
+.fcol__link {
+  font-size: 14px;
   color: var(--glyph-light-secondary);
-}
-
-.fcol__list li {
   transition: color var(--dur-fast) var(--ease-out);
-  cursor: default;
 }
 
-.fcol__list li:hover {
-  color: var(--glyph-light);
+.fcol__link:hover {
+  color: var(--link-light);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
 }
 
 .sitefooter__legal {
@@ -176,7 +174,17 @@ onBeforeUnmount(() => {})
   box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.16);
 }
 
+@media (max-width: 1068px) {
+  .sitefooter__columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
+
 @media (max-width: 734px) {
+  .footnote-area {
+    padding-top: 40px;
+  }
   .sitefooter__columns {
     grid-template-columns: 1fr 1fr;
     gap: 24px;

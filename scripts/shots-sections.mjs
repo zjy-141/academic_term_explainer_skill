@@ -11,21 +11,20 @@ mkdirSync(outDir, { recursive: true })
 const ids = [
   'hero',
   'highlights',
-  'design',
+  'workflow',
   'extraction',
   'routing',
   'search',
   'assembly',
   'recursion',
-  'reliability',
-  'workflows',
+  'output',
+  'scenarios',
   'metrics',
   'interfaces',
   'trust',
   'upgrade',
   'team',
   'values',
-  'index',
 ]
 
 const browser = await chromium.launch()

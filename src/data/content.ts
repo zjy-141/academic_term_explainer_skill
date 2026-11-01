@@ -302,8 +302,8 @@ export const recursion = {
   ],
 }
 
-export const reliability = {
-  eyebrow: 'M7 · PDF 输出',
+export const output = {
+  eyebrow: '输出',
   headline: ['导出失败，', '也还有文件。'],
   intro:
     '不同机器安装的软件和环境不同。导出前会真实试跑一次，按 L1、L2、L3、L5 的顺序命中第一个可用的方案；四者都不可用时，Markdown 仍然交付。',
@@ -558,9 +558,8 @@ export const values = {
   ],
 }
 
-export const indexSection = {
-  headline: '术语讲清楚，阅读继续。',
-  links: [
+export const footerNav = {
+  columns: [
     {
       title: '概览',
       items: [
@@ -576,14 +575,12 @@ export const indexSection = {
         { label: '学科路由 M2', href: '#routing' },
         { label: '联网搜索 M3', href: '#search' },
         { label: '模块拼装 M4', href: '#assembly' },
+        { label: '递归澄清 M5', href: '#recursion' },
       ],
     },
     {
       title: '输出',
-      items: [
-        { label: '递归澄清 M5', href: '#recursion' },
-        { label: 'Markdown 与降级链 M6–M8', href: '#reliability' },
-      ],
+      items: [{ label: '输出', href: '#output' }],
     },
     {
       title: '关于',
@@ -604,11 +601,6 @@ export const footnotes = [
 
 export const footer = {
   note: '本站为“下次一定队”参赛作品的产品介绍页。',
-  columns: [
-    { title: '产品', items: ['能力', '工作流', '技术规格', '版本对比'] },
-    { title: '文档', items: ['产品技术文档 v2.0', '作品演示稿', '架构图', '测试用例'] },
-    { title: '团队', items: ['下次一定队', '参赛信息', '致谢', '联系'] },
-  ],
   legal: [
     'Copyright © 2026 下次一定队. 保留所有权利。',
     '学术术语解释器 · Academic Term Explainer',

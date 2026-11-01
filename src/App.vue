@@ -18,7 +18,6 @@ import TrustSection from './components/sections/TrustSection.vue'
 import UpgradeSection from './components/sections/UpgradeSection.vue'
 import TeamSection from './components/sections/TeamSection.vue'
 import ValuesSection from './components/sections/ValuesSection.vue'
-import IndexSection from './components/sections/IndexSection.vue'
 import { initSiteMotion } from './composables/useSiteMotion'
 
 let dispose: (() => void) | undefined
@@ -59,7 +58,6 @@ onBeforeUnmount(() => {
     <UpgradeSection />
     <TeamSection />
     <ValuesSection />
-    <IndexSection />
   </main>
   <SiteFooter />
 </template>
