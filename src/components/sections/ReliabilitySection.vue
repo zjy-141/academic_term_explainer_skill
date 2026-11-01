@@ -6,7 +6,7 @@ import StorySection from '../ui/StorySection.vue'
 <template>
   <StorySection
     section-id="reliability"
-    ghost="M6"
+    ghost="M6–M8"
     :eyebrow="reliability.eyebrow"
     :headline="reliability.headline"
     :intro="reliability.intro"

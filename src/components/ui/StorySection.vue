@@ -20,7 +20,9 @@ withDefaults(
 <template>
   <section :id="sectionId" class="section story theme-dark" :aria-label="label || eyebrow">
     <div class="viewport-content">
-      <p v-if="ghost" class="story__ghost" aria-hidden="true">{{ ghost }}</p>
+      <p v-if="ghost" class="story__ghost" :class="{ 'is-wide': ghost.length > 2 }" aria-hidden="true">
+        {{ ghost }}
+      </p>
       <div class="story__content">
         <TypeLockup :eyebrow="eyebrow" :lines="headline" :intro="intro" :align="align" :size="size" />
         <div class="story__body">
@@ -62,6 +64,13 @@ withDefaults(
   white-space: nowrap;
 }
 
+/* 字标更长时（如 M6–M8）缩小一档，避免撑出内容区 */
+.story__ghost.is-wide {
+  font-size: 200px;
+  letter-spacing: -0.05em;
+  top: -0.06em;
+}
+
 .story__body {
   margin-top: 64px;
 }
@@ -70,6 +79,10 @@ withDefaults(
   .story__ghost {
     font-size: 240px;
     top: -0.36em;
+  }
+  .story__ghost.is-wide {
+    font-size: 150px;
+    top: -0.14em;
   }
   .story__body {
     margin-top: 48px;
@@ -80,6 +93,10 @@ withDefaults(
   .story__ghost {
     font-size: 150px;
     top: -0.3em;
+  }
+  .story__ghost.is-wide {
+    font-size: 96px;
+    top: -0.16em;
   }
   .story__body {
     margin-top: 32px;
