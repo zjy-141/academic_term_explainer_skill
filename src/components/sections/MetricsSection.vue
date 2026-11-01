@@ -48,6 +48,8 @@ import TypeLockup from '../ui/TypeLockup.vue'
   display: grid;
   gap: 6px;
   align-content: start;
+  justify-items: center;
+  text-align: center;
 }
 
 .metric__value {
