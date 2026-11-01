@@ -5,6 +5,12 @@
 
 技术栈：**Vue 3 + TypeScript + Vite + GSAP（ScrollTrigger）**
 
+## 页面预览
+
+| 首屏 | 引擎区块 | 模块拼装与耗时基准 |
+| --- | --- | --- |
+| ![首屏](docs/preview-hero.png) | ![术语提取](docs/preview-extraction.png) | ![模块拼装](docs/preview-assembly.png) |
+
 ---
 
 ## 快速开始
