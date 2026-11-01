@@ -30,7 +30,7 @@ export const hero = {
   price: '开箱即用 · 支持 Markdown 与 PDF 导出',
   note: '*',
   primaryCta: { label: '立即体验', href: '#workflow' },
-  secondaryCta: { label: '查看技术规格', href: '#metrics' },
+  secondaryCta: { label: '查看技术指标', href: '#metrics' },
   source: {
     label: '原文',
     text: '在临床决策支持系统（CDSS）的部署过程中，算法透明度成为医患双方关注的焦点。然而，过度披露模型细节可能引发认知过载，反而削弱患者对算法决策的信任。',
@@ -441,7 +441,7 @@ export const workflows = {
 export const metrics = {
   eyebrow: '指标',
   headline: ['目标值，', '都能核对'],
-  intro: '下列数值为目标值，每一项都对应产品技术文档中的指标编号，可在技术规格一节逐条核对。',
+  intro: '下列数值为目标值，每一项都对应产品技术文档中的指标编号，可在技术指标一节逐条核对。',
   stats: [
     { value: '≥ 90', unit: '%', label: '术语提取准确率', code: 'FI-01' },
     { value: '≥ 98', unit: '%', label: '搜索成功率', code: 'FI-03' },
@@ -546,7 +546,7 @@ export const values = {
     {
       title: '不复用过期缓存',
       copy: '你的环境变了（比如安装了 XeLaTeX），就重新试运行一次导出链路，不使用上次的结果顶替。',
-      link: '查看技术规格',
+      link: '查看技术指标',
       href: '#metrics',
     },
     {
