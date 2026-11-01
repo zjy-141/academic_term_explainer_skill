@@ -35,28 +35,30 @@ import TypeLockup from '../ui/TypeLockup.vue'
   background: linear-gradient(180deg, #000 0%, #08080a 50%, #000 100%);
 }
 
+/* 不做卡片：数字直接坐在区块背景上，只用细线分栏 */
 .metrics__grid {
   margin-top: 64px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .metric {
-  background: #0a0a0b;
-  padding: 34px 28px 30px;
+  padding: 34px 28px 32px;
   display: grid;
   gap: 6px;
   align-content: start;
-  transition: background-color var(--dur-base) var(--ease-out);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.metric:hover {
-  background: #121215;
+.metric:nth-child(4n + 1) {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.metric:nth-child(4n) {
+  padding-right: 0;
 }
 
 .metric__value {
@@ -99,21 +101,42 @@ import TypeLockup from '../ui/TypeLockup.vue'
 @media (max-width: 1068px) {
   .metrics__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 40px;
+  }
+  .metric {
+    padding: 26px 22px 26px;
+  }
+  .metric:nth-child(4n + 1),
+  .metric:nth-child(4n) {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .metric:nth-child(odd) {
+    border-left: 0;
+    padding-left: 0;
+  }
+  .metric:nth-child(even) {
+    padding-right: 0;
   }
   .metric__value {
     font-size: 44px;
   }
-  .metrics__sub {
-    margin-top: 40px;
-  }
 }
 
 @media (max-width: 734px) {
-  .metrics__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   .metric {
-    padding: 24px 18px;
+    padding: 22px 16px 22px;
+  }
+  .metric:nth-child(4n + 1),
+  .metric:nth-child(4n) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .metric:nth-child(odd) {
+    padding-left: 0;
+  }
+  .metric:nth-child(even) {
+    padding-right: 0;
   }
   .metric__value {
     font-size: 34px;
