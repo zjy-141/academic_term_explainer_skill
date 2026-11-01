@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { nav, site } from '../../data/content'
+import { useSkillDownload } from '../../composables/useSkillDownload'
+
+const { href: downloadHref, filename: downloadName, started, onDownload } = useSkillDownload()
 
 const stuck = ref(false)
 const isLight = ref(false)
@@ -47,7 +50,18 @@ onBeforeUnmount(() => {
         <a v-for="item in nav.local" :key="item.href" :href="item.href">{{ item.label }}</a>
       </nav>
 
-      <a class="localnav__cta" :href="nav.cta.href">{{ nav.cta.label }}</a>
+      <a
+        class="localnav__cta"
+        :href="downloadHref"
+        :download="downloadName"
+        :aria-label="started ? `已开始下载 ${downloadName}` : `${nav.cta.label}，下载技能包 ${downloadName}`"
+        @click="onDownload"
+      >
+        <svg v-if="!started" class="localnav__cta-icon" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 2v8m0 0 3-3M8 10 5 7M3 13h10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>{{ started ? '已开始下载' : nav.cta.label }}</span>
+      </a>
     </div>
   </div>
 </template>
@@ -141,6 +155,11 @@ onBeforeUnmount(() => {
 }
 
 .localnav__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 96px;
   font-size: 12px;
   line-height: 1;
   padding: 7px 14px;
@@ -148,6 +167,12 @@ onBeforeUnmount(() => {
   background: var(--button-bg);
   color: #fff;
   transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.localnav__cta-icon {
+  width: 13px;
+  height: 13px;
+  flex: none;
 }
 
 .localnav__cta:hover {

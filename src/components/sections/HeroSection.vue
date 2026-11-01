@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { hero, site } from '../../data/content'
 import HeroScene from './HeroScene.vue'
+import { useSkillDownload } from '../../composables/useSkillDownload'
+
+const { href: downloadHref, filename: downloadName, started, onDownload } = useSkillDownload()
 </script>
 
 <template>
@@ -22,7 +25,18 @@ import HeroScene from './HeroScene.vue'
         <p class="hero__price">{{ hero.price }}</p>
 
         <div class="hero__actions">
-          <a class="pill-button" :href="hero.primaryCta.href">{{ hero.primaryCta.label }}</a>
+          <a
+            class="pill-button hero__download"
+            :href="downloadHref"
+            :download="downloadName"
+            :aria-label="started ? `已开始下载 ${downloadName}` : `${hero.primaryCta.label}，下载技能包 ${downloadName}`"
+            @click="onDownload"
+          >
+            <svg class="hero__download-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 2v8m0 0 3-3M8 10 5 7M3 13h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>{{ started ? '已开始下载' : hero.primaryCta.label }}</span>
+          </a>
           <a class="hero__link link-inline" :href="hero.secondaryCta.href">
             {{ hero.secondaryCta.label }}
             <span class="chevron" aria-hidden="true">›</span>
@@ -102,6 +116,16 @@ import HeroScene from './HeroScene.vue'
   gap: 24px;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.hero__download {
+  min-width: 132px;
+}
+
+.hero__download-icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
 }
 
 .hero__link {
