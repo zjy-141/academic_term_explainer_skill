@@ -44,8 +44,8 @@ import TypeLockup from '../ui/TypeLockup.vue'
   border-radius: var(--radius-card);
   background: #fff;
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.06),
-    0 0 0 1px rgba(0, 0, 0, 0.05);
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0 2px 10px rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
 
@@ -57,9 +57,10 @@ import TypeLockup from '../ui/TypeLockup.vue'
   align-items: stretch;
 }
 
+/* 表头比页面底色更深一档，才不会和背景糊在一起 */
 .compare__head {
-  background: #f5f5f7;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  background: #ececed;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .compare__cell {
@@ -124,8 +125,8 @@ import TypeLockup from '../ui/TypeLockup.vue'
   padding: 16px 26px;
   font-size: 13px;
   color: var(--glyph-light-secondary);
-  background: #f5f5f7;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 1068px) {
