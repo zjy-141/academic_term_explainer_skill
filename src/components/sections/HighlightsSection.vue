@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import gsap from 'gsap'
 import { highlights } from '../../data/content'
 import { prefersReducedMotion } from '../../composables/useSiteMotion'
+import HighlightGlyph from '../ui/HighlightGlyph.vue'
 
 const root = ref<HTMLElement | null>(null)
 const rail = ref<HTMLElement | null>(null)
@@ -51,44 +52,45 @@ const setupMotion = () => {
     cards.forEach((card, i) => {
       const art = card.querySelector<HTMLElement>('.hl-card__art')
       const svg = card.querySelector<SVGSVGElement>('.hl-card__art svg')
-      const rings = card.querySelectorAll<SVGElement>('.hl-card__art circle')
-      const accent = card.querySelector<SVGElement>('.hl-card__art .accent')
-      const ticks = card.querySelector<SVGElement>('.hl-card__art path')
+      const ring = card.querySelector<SVGElement>('.glyph__ring')
+      const accents = card.querySelectorAll<SVGElement>('.glyph__accent')
+      const scan = card.querySelector<SVGElement>('.glyph__scan')
       const glow = card.querySelector<HTMLElement>('.hl-card__glow')
       if (!art || !svg) return
 
-      const base = i * 24
-      gsap.set(art, { rotation: base, scale: 1, transformOrigin: '50% 50%' })
+      gsap.set(art, { scale: 1 })
 
-      // 常驻的缓慢自转：让卡片“活着”，不是静止占位
+      // 每张卡片常驻一种轻微动效：外环自转 / 扫描线往返
       let spin: gsap.core.Tween | null = null
       let pulse: gsap.core.Tween | null = null
       if (!reduce) {
-        spin = gsap.to(art, {
-          rotation: base + 360,
-          duration: 64 + i * 6,
-          ease: 'none',
-          repeat: -1,
-        })
-        // 虚线环反向微转，形成两层错位
-        gsap.to(rings[0] ?? art, {
-          rotation: -360,
-          transformOrigin: '50% 50%',
-          duration: 120,
-          ease: 'none',
-          repeat: -1,
-        })
+        if (ring) {
+          spin = gsap.to(ring, {
+            rotation: i % 2 === 0 ? -360 : 360,
+            svgOrigin: '60 60',
+            duration: 70 + i * 9,
+            ease: 'none',
+            repeat: -1,
+          })
+        }
+        if (scan) {
+          gsap.fromTo(
+            scan,
+            { y: -20 },
+            { y: 26, duration: 2.6, ease: 'sine.inOut', repeat: -1, yoyo: true },
+          )
+        }
       }
 
       const onEnter = () => {
-        // 悬停：旋转加速 + 放大 + 高亮 + 核心脉冲，全部由 GSAP 插值
-        if (spin) gsap.to(spin, { timeScale: 3.4, duration: 1, ease: 'power2.out' })
-        gsap.to(art, { scale: 1.07, duration: 0.8, ease: 'power3.out' })
-        gsap.to(svg, { color: 'rgba(255,255,255,0.72)', duration: 0.7, ease: 'power2.out' })
-        if (accent) {
-          gsap.to(accent, { stroke: '#64d2ff', duration: 0.7, ease: 'power2.out' })
-          pulse ??= gsap.to(accent, {
-            scale: 1.28,
+        // 悬停：外环加速、图形放大、强调元素脉冲，全部由 GSAP 插值
+        if (spin) gsap.to(spin, { timeScale: 3.6, duration: 1, ease: 'power2.out' })
+        gsap.to(art, { scale: 1.06, duration: 0.8, ease: 'power3.out' })
+        gsap.to(svg, { color: 'rgba(255,255,255,0.76)', duration: 0.7, ease: 'power2.out' })
+        if (accents.length) {
+          gsap.to(accents, { stroke: '#64d2ff', duration: 0.7, ease: 'power2.out' })
+          pulse ??= gsap.to(accents, {
+            scale: 1.22,
             transformOrigin: '50% 50%',
             duration: 1.1,
             repeat: -1,
@@ -97,7 +99,7 @@ const setupMotion = () => {
           })
           pulse.play()
         }
-        if (ticks) gsap.to(ticks, { scale: 1.1, transformOrigin: '50% 50%', duration: 0.8, ease: 'power2.out' })
+        if (scan) gsap.to(scan, { opacity: 1, duration: 0.4 })
         if (glow) gsap.to(glow, { opacity: 1, duration: 0.8, ease: 'power2.out' })
         gsap.to(card, { y: -6, duration: 0.6, ease: 'power2.out' })
       }
@@ -105,13 +107,13 @@ const setupMotion = () => {
       const onLeave = () => {
         if (spin) gsap.to(spin, { timeScale: 1, duration: 1.4, ease: 'power2.inOut' })
         gsap.to(art, { scale: 1, duration: 1, ease: 'power3.inOut' })
-        gsap.to(svg, { color: 'rgba(255,255,255,0.4)', duration: 0.9, ease: 'power2.inOut' })
-        if (accent) {
-          gsap.to(accent, { stroke: '#2997ff', duration: 1, ease: 'power2.inOut' })
+        gsap.to(svg, { color: 'rgba(255,255,255,0.42)', duration: 0.9, ease: 'power2.inOut' })
+        if (accents.length) {
+          gsap.to(accents, { stroke: '#2997ff', duration: 1, ease: 'power2.inOut' })
           pulse?.pause()
-          gsap.to(accent, { scale: 1, duration: 0.6, ease: 'power2.out' })
+          gsap.to(accents, { scale: 1, duration: 0.6, ease: 'power2.out' })
         }
-        if (ticks) gsap.to(ticks, { scale: 1, duration: 1, ease: 'power2.inOut' })
+        if (scan) gsap.to(scan, { opacity: 0.75, duration: 0.4 })
         if (glow) gsap.to(glow, { opacity: 0.7, duration: 1, ease: 'power2.inOut' })
         gsap.to(card, { y: 0, duration: 0.8, ease: 'power2.inOut' })
       }
@@ -170,12 +172,7 @@ onBeforeUnmount(() => {
           <span class="hl-card__index mono">{{ item.index }}</span>
           <div class="hl-card__glow" aria-hidden="true"></div>
           <div class="hl-card__art" aria-hidden="true">
-            <svg viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r="46" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 7" />
-              <circle cx="60" cy="60" r="30" fill="none" stroke="currentColor" stroke-width="1" />
-              <circle cx="60" cy="60" r="13" fill="none" stroke="currentColor" stroke-width="1.4" class="accent" />
-              <path d="M60 2v14M60 104v14M2 60h14M104 60h14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-            </svg>
+            <HighlightGlyph :name="item.glyph" />
           </div>
           <div class="hl-card__body">
             <h3 class="hl-card__title">{{ item.title }}</h3>
@@ -330,15 +327,16 @@ onBeforeUnmount(() => {
 
 /* 动效由 GSAP 接管：这里只给初始状态，避免 CSS 过渡与 GSAP 抢同一属性 */
 .hl-card__art {
-  margin-top: 26px;
-  color: rgba(255, 255, 255, 0.4);
+  margin: 10px auto 0;
+  width: 196px;
+  color: rgba(255, 255, 255, 0.42);
   transform-origin: 50% 50%;
   will-change: transform;
 }
 
 .hl-card__art svg {
-  width: 148px;
-  height: 148px;
+  width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -399,6 +397,8 @@ onBeforeUnmount(() => {
   line-height: 1.42859;
   letter-spacing: -0.016em;
   color: var(--glyph-secondary);
+  /* 固定两行高度，让各卡片标题在不同图注长度下仍能对齐 */
+  min-height: 2.86em;
 }
 
 .highlights__footnote {
@@ -417,9 +417,9 @@ onBeforeUnmount(() => {
     height: 440px;
     padding: 26px;
   }
-  .hl-card__art svg {
-    width: 120px;
-    height: 120px;
+  .hl-card__art {
+    width: 150px;
+    margin-top: 8px;
   }
   .hl-card__title {
     font-size: 24px;

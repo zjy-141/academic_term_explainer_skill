@@ -9,11 +9,25 @@ import TypeLockup from '../ui/TypeLockup.vue'
       <TypeLockup :eyebrow="values.eyebrow" :lines="values.headline" align="left" size="l" />
 
       <ul class="values__grid" data-stagger>
-        <li v-for="item in values.items" :key="item.title" class="vcard" data-stagger-item>
+        <li v-for="(item, i) in values.items" :key="item.title" class="vcard" data-stagger-item>
           <div class="vcard__icon" aria-hidden="true">
-            <svg viewBox="0 0 32 32">
-              <circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.2" />
-              <path d="M16 9v14M10.5 16h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+            <!-- 不编造来源：盾牌 + 勾 -->
+            <svg v-if="i === 0" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 3.5 26 7v9c0 6.2-4.3 10.6-10 12.5C10.3 26.6 6 22.2 6 16V7z" />
+              <path d="M11.5 16.2l3.2 3.3 6-7" />
+            </svg>
+            <!-- 不复用过期缓存：环形刷新箭头 -->
+            <svg v-else-if="i === 1" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M26.5 16a10.5 10.5 0 1 1-3.4-7.7" />
+              <path d="M26.8 5.2v6.4h-6.4" />
+              <circle cx="16" cy="16" r="2.4" />
+            </svg>
+            <!-- 不省略降级说明：文档 + 批注 -->
+            <svg v-else viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 4.5h11l5 5v18H8z" />
+              <path d="M19 4.5V10h5" />
+              <path d="M12.5 16h7M12.5 20.5h4.5" />
+              <path d="M23 21.5h4.6l-1.7 3.4" />
             </svg>
           </div>
           <p class="vcard__title">{{ item.title }}</p>
@@ -47,7 +61,7 @@ import TypeLockup from '../ui/TypeLockup.vue'
   display: grid;
   gap: 14px;
   align-content: start;
-  min-height: 320px;
+  min-height: 268px;
   transition: transform var(--dur-base) var(--ease-out);
 }
 
