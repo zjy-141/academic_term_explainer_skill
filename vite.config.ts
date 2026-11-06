@@ -2,8 +2,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  // 项目站点部署到 https://zjy-141.github.io/explainer_skill/
-  base: '/explainer_skill/', 
+  // 项目站点部署到 https://zjy-141.github.io/academic_term_explainer_skill/
+  base: '/academic_term_explainer_skill/', 
   plugins: [vue()],
   server: {
     host: '127.0.0.1',
